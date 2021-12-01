@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'drug.apps.DrugConfig',
-    'prescriber.apps.PrescriberConfig',
+   
 ]
 
 MIDDLEWARE = [
