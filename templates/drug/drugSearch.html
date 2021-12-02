@@ -20,6 +20,18 @@
   <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
+        <form id="form" method="POST" action="{% url 'drugDetail' %}">
+          <!--label and input for first name-->
+          <label for="drugname"> Drug Name: </label>
+          <input type="text" id="drugname" name="drugname" />
+          <br />
+          <label for="isopioid"> Is Opioid: </label>
+          <input type="checkbox" id="isopioid" name="isopioid" value="True" />
+          <br />
+
+          <button class="btncolor" type="submit">Search</button>
+          <!--changed btncolor in css not updated yet-->
+        </form>
         <p>
           Never in all their history have men been able truly to conceive of the
           world as one: a single sphere, a globe, having the qualities of a

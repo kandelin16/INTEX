@@ -20,6 +20,34 @@
   <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
+        <form id="form" method="POST" action="{% url 'prescriberDetail' %}">
+          <!--label and input for first name-->
+          <label for="fname"> First Name: </label>
+          <input type="text" id="fname" name="fname" />
+          <br />
+          <!--label and input for last name-->
+          <label for="lname"> Last Name: </label>
+          <input type="text" id="lname" name="lname" />
+          <br />
+          <!--label and input for credential-->
+          <label for="credentials"> Credentials: </label>
+          <input type="text" id="credentials" name="credentials" />
+          <br />
+          <!--label and input for specialty-->
+          <label for="specialty"> Specialty: </label>
+          <input type="text" id="specialty" name="specialty" />
+          <br />
+          <!--drop down for gender-->
+          <select name="gender"></select>
+          <br />
+          <!--drop down for state-->
+          <select name="state" id="state"></select>
+
+          <br />
+          <br />
+          <button class="btncolor" type="submit">Search</button>
+          <!--changed btncolor in css not updated yet-->
+        </form>
         <p>
           Want to get in touch? Fill out the form below to send me a message and
           I will get back to you as soon as possible!
