@@ -54,8 +54,8 @@
           national crisis. The misuse of opioid perscription drugs alone have a total economic burden of $78.5 billion a year.
           These costs include addiction treatment, criminal involvement, and the cost of healthcare. 
           From 21 to 29 percent of patients misuse opioids that were prescribed for chronic pain. Around 80 percent of people 
-          who use heroine misused perscripted opioids first. This issue continues to grow more serious. Below is a chart of the increase of
-          deaths involving opioids since 1999.
+          who use heroine misused perscripted opioids first. This issue continues to grow more serious. Below is a chart of the opioid related
+          deaths per state.
 
           Information from
           <a href="https://www.drugabuse.gov/drug-topics/opioids/opioid-overdose-crisis">drugabuse.org</a>
@@ -105,12 +105,9 @@
       <hr class="my-4" />
       <!-- Post preview-->
       <div class="post-preview">
-        <a href="{% url 'drugSearch' %}">
-          <h2 class="post-title">Failure is not an option</h2>
-          <h3 class="post-subtitle">
-            Many say exploration is part of our destiny, but it’s actually our
-            duty to future generations.
-          </h3>
+        {% comment %} <a href="{% url 'drugSearch' %}"> {% endcomment %}
+          <h2 class="post-title">Opioids Prescribed Most Frequently</h2>
+          <p>Below is a chart of the opioids that are prescribed the most.</p>
         </a>
         <p class="post-meta">
           Posted by
