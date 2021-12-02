@@ -2,7 +2,7 @@
 <!-- Page Header-->
 <header
   class="masthead"
-  style="background-image: url('{% static 'assets/img/home-bg.jpg' %}')"
+  style="background-image: url('{% static 'assets/img/spillPill.jpg' %}')"
 >
   <div class="container position-relative px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -21,34 +21,72 @@
     <div class="col-md-10 col-lg-8 col-xl-7">
       <!-- Post preview-->
       <div class="post-preview">
-        <a href="{% url 'drugSearch' %}">
-          <h2 class="post-title">
-            Man must explore, and this is exploration at its greatest
-          </h2>
-          <h3 class="post-subtitle">
-            Problems look mighty small from 150 miles up
-          </h3>
+        <!--<a href="{% url 'drugSearch' %}">-->
+          <a
+      class="btn btn-primary btn-xl text-uppercase js-scroll-trigger btncolor"
+      href="{% url 'prescriberSearch' %}"
+      >Search Prescribers</a
+    >
+    &ensp;
+    &ensp;
+    <a
+      class="btn btn-primary btn-xl text-uppercase js-scroll-trigger btncolor"
+      href="{% url 'drugSearch' %}"
+      >Seach Drugs Types</a
+    >
+    <br>
+    <br>
+    
+
+
+          <h2>Opioid Overdoes Crisis</h2>
+          {% comment %} <h5 class="post-subtitle">
+            
+          </h5> {% endcomment %}
         </a>
-        <p class="post-meta">
-          Posted by
-          <a href="#!">Start Bootstrap</a>
-          on September 24, 2021
+        <p>
+          In the later 1990s, pharaceutical companies convinced the medical 
+          community that patients would not get addicted to opioid pain relivers.
+          However, these medications were highly addictive and continue to be a major issue today.
+          Around 50,000 people in the United States died from opioid-involved overdoses. This is a serious
+          national crisis. The misuse of opioid perscription drugs alone have a total economic burden of $78.5 billion a year.
+          These costs include addiction treatment, criminal involvement, and the cost of healthcare. 
+          From 21 to 29 percent of patients misuse opioids that were prescribed for chronic pain. Around 80 percent of people 
+          who use heroine misused perscripted opioids first. This issue continues to grow more serious. Below is a chart of the increase of
+          deaths involving opioids since 1999.
+
+          Information from
+          <a href="https://www.drugabuse.gov/drug-topics/opioids/opioid-overdose-crisis">drugabuse.org</a>
+          <br>
+          <br>
+          <img src="{% static 'assets/img/deathOverdose.jpeg' %}" alt= "death stats" width=600>
+          From <a href="https://www.drugabuse.gov/drug-topics/trends-statistics/overdose-death-rates">drugabuse.org</a>
         </p>
+        
       </div>
       <!-- Divider-->
       <hr class="my-4" />
       <!-- Post preview-->
       <div class="post-preview">
-        <a href="{% url 'drugSearch' %}"
-          ><h2 class="post-title">
-            I believe every human has a finite number of heartbeats. I don't
-            intend to waste any of mine.
-          </h2></a
-        >
-        <p class="post-meta">
-          Posted by
-          <a href="#!">Start Bootstrap</a>
-          on September 18, 2021
+        {% comment %} <a href="{% url 'drugSearch' %}" {% endcomment %}
+          <h2 class="post-title">
+            Risk Factors for Opioid Addiction
+          </h2>
+        <p>
+          Common factors that increase the risk of opioid addition are:
+         <ul>
+          <li>History of substance abuse</li>
+          <li>Depression and other mental health issues</li>
+          <li>Childhood abuse and neglect</li>
+          <li>Risk-taking and thrill seeking behavior</li>
+          <li>Unemployment and poverty</li>
+         </ul>
+         <br>
+      
+          <img src="{% static 'assets/img/orangeOxi.jpg' %}" alt= "spilling oxicodon" width=500>
+         
+          <br>From <a href="https://www.mayoclinic.org/diseases-conditions/prescription-drug-abuse/in-depth/how-opioid-addiction-occurs/art-20360372">mayoclinic.org</a>
+          
         </p>
       </div>
       <!-- Divider-->
