@@ -1,16 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Prescriber
-from .models import StateData
-from .models import StateAbbreviation
-from .models import Credentials
-from .models import Drugs
-from .models import Triple
+from . import models
 
 # Create your views here.
 
 def indexPageView(request):
-    return render(request, 'drug/index.html')
+    people = models.Statenames.objects.all()
+    context = {
+        "people": people,
+    }
+    return render(request, 'drug/index.html', context)
 
 def aboutPageView(request):
     return render(request, 'drug/about.html')
@@ -27,10 +26,12 @@ def machineLearningPageView(request):
 def prescriberDetailPageView(request):
     return render(request, 'drug/prescriberDetail.html')
 
-def prescriberSearchPageView(request):
-    if request.method == "POST":
-        prescriber = Prescriber.objects.all() #maybe should be get() id or something
+def prescriberSearchPageView(request):    
+    return render(request, 'drug/prescriberSearch.html')
 
+def prescriberSearch(request):
+    if request.method == "POST":
+        prescriber = models.Prescriber.objects.all() #maybe should be get() id or something
         prescriber.fname= request.POST['fname']
         prescriber.lname= request.POST['lname']
         prescriber.credentials= request.POST['credentials'] 
@@ -38,4 +39,4 @@ def prescriberSearchPageView(request):
         prescriber.state= request.POST['state'] 
         prescriber.specialty= request.POST['specialty'] 
     
-    return render(request, 'drug/prescriberSearch.html')
+    return()

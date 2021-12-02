@@ -1,80 +1,323 @@
 from django.db import models
 
-# Create your models here.
-
-from django.db import models
-
-# Create your models here.
-
-class Drugs(models.Model):
-    #drugid=models.IntegerField()
-    drugname = models.CharField(max_length=30)
-    isopioid = models.CharField(max_length=5)
-   
-    class Meta:
-        db_table= 'pd_drugs'
-    
-    def __str__(self):
-        return (self.drugname)  #may need fixed
-
 class Prescriber(models.Model):
-    npi = models.IntegerField(unique=True)
+    npi = models.IntegerField(primary_key=True)
     fname = models.CharField(max_length=11)
     lname = models.CharField(max_length=11)
     gender = models.CharField(max_length=1)
     state = models.CharField(max_length=2)
     specialty = models.CharField(max_length=62)
-    isopioidprescriber = models.CharField(max_length=5)
-    totalprescriptions = models.IntegerField()
+    isopiodprescriber = models.CharField(max_length=5)
+    totalperscriptions = models.IntegerField()
+    abilify = models.IntegerField()
+    acetaminophencodeine = models.IntegerField()
+    acyclovir = models.IntegerField()
+    advairdiskus = models.IntegerField()
+    aggrenox = models.IntegerField()
+    alendronatesodium = models.IntegerField()
+    allopurinol = models.IntegerField()
+    alprazolam = models.IntegerField()
+    amiodaronehcl = models.IntegerField()
+    amitriptylinehcl = models.IntegerField()
+    amlodipinebesylate = models.IntegerField()
+    amlodipinebesylatebenazepril = models.IntegerField()
+    amoxicillin = models.IntegerField()
+    amoxtrpotassiumclavulanate = models.IntegerField()
+    amphetaminesaltcombo = models.IntegerField()
+    atenolol = models.IntegerField()
+    atorvastatincalcium = models.IntegerField()
+    avodart = models.IntegerField()
+    azithromycin = models.IntegerField()
+    baclofen = models.IntegerField()
+    bdultrafinepenneedle = models.IntegerField()
+    benazeprilhcl = models.IntegerField()
+    benicar = models.IntegerField()
+    benicarhct = models.IntegerField()
+    benztropinemesylate = models.IntegerField()
+    bisoprololhydrochlorothiazide = models.IntegerField()
+    brimonidinetartrate = models.IntegerField()
+    bumetanide = models.IntegerField()
+    bupropionhclsr = models.IntegerField()
+    bupropionxl = models.IntegerField()
+    buspironehcl = models.IntegerField()
+    bystolic = models.IntegerField()
+    carbamazepine = models.IntegerField()
+    carbidopalevodopa = models.IntegerField()
+    carisoprodol = models.IntegerField()
+    cartiaxt = models.IntegerField()
+    carvedilol = models.IntegerField()
+    cefuroxime = models.IntegerField()
+    celebrex = models.IntegerField()
+    cephalexin = models.IntegerField()
+    chlorhexidinegluconate = models.IntegerField()
+    chlorthalidone = models.IntegerField()
+    cilostazol = models.IntegerField()
+    ciprofloxacinhcl = models.IntegerField()
+    citalopramhbr = models.IntegerField()
+    clindamycinhcl = models.IntegerField()
+    clobetasolpropionate = models.IntegerField()
+    clonazepam = models.IntegerField()
+    clonidinehcl = models.IntegerField()
+    clopidogrel = models.IntegerField()
+    clotrimazolebetamethasone = models.IntegerField()
+    colcrys = models.IntegerField()
+    combiventrespimat = models.IntegerField()
+    crestor = models.IntegerField()
+    cyclobenzaprinehcl = models.IntegerField()
+    dexilant = models.IntegerField()
+    diazepam = models.IntegerField()
+    diclofenacsodium = models.IntegerField()
+    dicyclominehcl = models.IntegerField()
+    digox = models.IntegerField()
+    digoxin = models.IntegerField()
+    diltiazem24hrcd = models.IntegerField()
+    diltiazem24hrer = models.IntegerField()
+    diltiazemer = models.IntegerField()
+    diltiazemhcl = models.IntegerField()
+    diovan = models.IntegerField()
+    diphenoxylateatropine = models.IntegerField()
+    divalproexsodium = models.IntegerField()
+    divalproexsodiumer = models.IntegerField()
+    donepezilhcl = models.IntegerField()
+    dorzolamidetimolol = models.IntegerField()
+    doxazosinmesylate = models.IntegerField()
+    doxepinhcl = models.IntegerField()
+    doxycyclinehyclate = models.IntegerField()
+    duloxetinehcl = models.IntegerField()
+    enalaprilmaleate = models.IntegerField()
+    escitalopramoxalate = models.IntegerField()
+    estradiol = models.IntegerField()
+    exelon = models.IntegerField()
+    famotidine = models.IntegerField()
+    felodipineer = models.IntegerField()
+    fenofibrate = models.IntegerField()
+    fentanyl = models.IntegerField()
+    finasteride = models.IntegerField()
+    floventhfa = models.IntegerField()
+    fluconazole = models.IntegerField()
+    fluoxetinehcl = models.IntegerField()
+    fluticasonepropionate = models.IntegerField()
+    furosemide = models.IntegerField()
+    gabapentin = models.IntegerField()
+    gemfibrozil = models.IntegerField()
+    glimepiride = models.IntegerField()
+    glipizide = models.IntegerField()
+    glipizideer = models.IntegerField()
+    glipizidexl = models.IntegerField()
+    glyburide = models.IntegerField()
+    haloperidol = models.IntegerField()
+    humalog = models.IntegerField()
+    hydralazinehcl = models.IntegerField()
+    hydrochlorothiazide = models.IntegerField()
+    hydrocodoneacetaminophen = models.IntegerField()
+    hydrocortisone = models.IntegerField()
+    hydromorphonehcl = models.IntegerField()
+    hydroxyzinehcl = models.IntegerField()
+    ibandronatesodium = models.IntegerField()
+    ibuprofen = models.IntegerField()
+    insulinsyringe = models.IntegerField()
+    ipratropiumbromide = models.IntegerField()
+    irbesartan = models.IntegerField()
+    isosorbidemononitrateer = models.IntegerField()
+    jantoven = models.IntegerField()
+    janumet = models.IntegerField()
+    januvia = models.IntegerField()
+    ketoconazole = models.IntegerField()
+    klorcon10 = models.IntegerField()
+    klorconm10 = models.IntegerField()
+    klorconm20 = models.IntegerField()
+    labetalolhcl = models.IntegerField()
+    lactulose = models.IntegerField()
+    lamotrigine = models.IntegerField()
+    lansoprazole = models.IntegerField()
+    lantus = models.IntegerField()
+    lantussolostar = models.IntegerField()
+    latanoprost = models.IntegerField()
+    levemir = models.IntegerField()
+    levemirflexpen = models.IntegerField()
+    levetiracetam = models.IntegerField()
+    levofloxacin = models.IntegerField()
+    levothyroxinesodium = models.IntegerField()
+    lidocaine = models.IntegerField()
+    lisinopril = models.IntegerField()
+    lisinoprilhydrochlorothiazide = models.IntegerField()
+    lithiumcarbonate = models.IntegerField()
+    lorazepam = models.IntegerField()
+    losartanhydrochlorothiazide = models.IntegerField()
+    losartanpotassium = models.IntegerField()
+    lovastatin = models.IntegerField()
+    lovaza = models.IntegerField()
+    lumigan = models.IntegerField()
+    lyrica = models.IntegerField()
+    meclizinehcl = models.IntegerField()
+    meloxicam = models.IntegerField()
+    metforminhcl = models.IntegerField()
+    metforminhcler = models.IntegerField()
+    methadonehcl = models.IntegerField()
+    methocarbamol = models.IntegerField()
+    methotrexate = models.IntegerField()
+    methylprednisolone = models.IntegerField()
+    metoclopramidehcl = models.IntegerField()
+    metolazone = models.IntegerField()
+    metoprololsuccinate = models.IntegerField()
+    metoprololtartrate = models.IntegerField()
+    metronidazole = models.IntegerField()
+    mirtazapine = models.IntegerField()
+    montelukastsodium = models.IntegerField()
+    morphinesulfate = models.IntegerField()
+    morphinesulfateer = models.IntegerField()
+    mupirocin = models.IntegerField()
+    nabumetone = models.IntegerField()
+    namenda = models.IntegerField()
+    namendaxr = models.IntegerField()
+    naproxen = models.IntegerField()
+    nasonex = models.IntegerField()
+    nexium = models.IntegerField()
+    niaciner = models.IntegerField()
+    nifedicalxl = models.IntegerField()
+    nifedipineer = models.IntegerField()
+    nitrofurantoinmonomacro = models.IntegerField()
+    nitrostat = models.IntegerField()
+    nortriptylinehcl = models.IntegerField()
+    novolog = models.IntegerField()
+    novologflexpen = models.IntegerField()
+    nystatin = models.IntegerField()
+    olanzapine = models.IntegerField()
+    omeprazole = models.IntegerField()
+    ondansetronhcl = models.IntegerField()
+    ondansetronodt = models.IntegerField()
+    onglyza = models.IntegerField()
+    oxcarbazepine = models.IntegerField()
+    oxybutyninchloride = models.IntegerField()
+    oxybutyninchlorideer = models.IntegerField()
+    oxycodoneacetaminophen = models.IntegerField()
+    oxycodonehcl = models.IntegerField()
+    oxycontin = models.IntegerField()
+    pantoprazolesodium = models.IntegerField()
+    paroxetinehcl = models.IntegerField()
+    phenobarbital = models.IntegerField()
+    phenytoinsodiumextended = models.IntegerField()
+    pioglitazonehcl = models.IntegerField()
+    polyethyleneglycol3350 = models.IntegerField()
+    potassiumchloride = models.IntegerField()
+    pradaxa = models.IntegerField()
+    pramipexoledihydrochloride = models.IntegerField()
+    pravastatinsodium = models.IntegerField()
+    prednisone = models.IntegerField()
+    premarin = models.IntegerField()
+    primidone = models.IntegerField()
+    proairhfa = models.IntegerField()
+    promethazinehcl = models.IntegerField()
+    propranololhcl = models.IntegerField()
+    propranololhcler = models.IntegerField()
+    quetiapinefumarate = models.IntegerField()
+    quinaprilhcl = models.IntegerField()
+    raloxifenehcl = models.IntegerField()
+    ramipril = models.IntegerField()
+    ranexa = models.IntegerField()
+    ranitidinehcl = models.IntegerField()
+    restasis = models.IntegerField()
+    risperidone = models.IntegerField()
+    ropinirolehcl = models.IntegerField()
+    seroquelxr = models.IntegerField()
+    sertralinehcl = models.IntegerField()
+    simvastatin = models.IntegerField()
+    sotalol = models.IntegerField()
+    spiriva = models.IntegerField()
+    spironolactone = models.IntegerField()
+    sucralfate = models.IntegerField()
+    sulfamethoxazoletrimethoprim = models.IntegerField()
+    sumatriptansuccinate = models.IntegerField()
+    symbicort = models.IntegerField()
+    synthroid = models.IntegerField()
+    tamsulosinhcl = models.IntegerField()
+    temazepam = models.IntegerField()
+    terazosinhcl = models.IntegerField()
+    timololmaleate = models.IntegerField()
+    tizanidinehcl = models.IntegerField()
+    tolterodinetartrateer = models.IntegerField()
+    topiramate = models.IntegerField()
+    toprolxl = models.IntegerField()
+    torsemide = models.IntegerField()
+    tramadolhcl = models.IntegerField()
+    travatanz = models.IntegerField()
+    trazodonehcl = models.IntegerField()
+    triamcinoloneacetonide = models.IntegerField()
+    triamterenehydrochlorothiazid = models.IntegerField()
+    valacyclovir = models.IntegerField()
+    valsartan = models.IntegerField()
+    valsartanhydrochlorothiazide = models.IntegerField()
+    venlafaxinehcl = models.IntegerField()
+    venlafaxinehcler = models.IntegerField()
+    ventolinhfa = models.IntegerField()
+    verapamiler = models.IntegerField()
+    vesicare = models.IntegerField()
+    voltaren = models.IntegerField()
+    vytorin = models.IntegerField()
+    warfarinsodium = models.IntegerField()
+    xarelto = models.IntegerField()
+    zetia = models.IntegerField()
+    ziprasidonehcl = models.IntegerField()
+    zolpidemtartrate = models.IntegerField()
 
     class Meta:
-        db_table= 'pd_prescriber'
-    
-    def __str__(self):
-        return (self.fname) + " " + (self.lname)  #may need fixed
+        db_table = 'prescriber'
 
-class Credentials(models.Model):
-    npi = models.IntegerField() #nned to be primary or foriegn?
-    credentials = models.CharField(max_length=20)
-    
-    
+    def __str__(self):
+        return (self.fname + ' ' + self.lname)
+
+
+
+class Credential(models.Model):
+    id = models.IntegerField(primary_key=True)
+    npi = models.ForeignKey('Prescriber', models.DO_NOTHING, db_column='npi')
+    credentials = models.CharField(max_length=20, blank=True, null=True)
+
     class Meta:
-        db_table= 'pd_credentials'
-    
-    def __str__(self):
-        return (self.credentials)  #may need fixed
+        db_table = 'credential'
 
-class StateData(models.Model):
-    stateabbrev = models.CharField(max_length=2) #may need to be primary key
+    def __str__(self):
+        return (self.credentials)
+
+
+class Drug(models.Model):
+    drugname = models.CharField(primary_key=True, max_length=30)
+    isopiod = models.CharField(max_length=5)
+
+    class Meta:
+        db_table = 'drug'
+
+    def __str__(self):
+        return (self.drugname)
+
+class Statedata(models.Model):
+    stateabbrev = models.CharField(primary_key=True, max_length=2)
     population = models.IntegerField()
     deaths = models.IntegerField()
-    
-    class Meta:
-        db_table= 'pd_statedata'
-    
-    def __str__(self):
-        return (self.stateabbrev)  #may need fixed
-
-class StateAbbreviation(models.Model):
-    stateabbrev = models.CharField(max_length=2)
-    state = models.CharField(max_length=14) # may need to be primary and foreign key
-    
 
     class Meta:
-        db_table= 'pd_stateabbreviation'
+        db_table = 'statedata'
+
+    def __str__(self):
+        return (self.stateabbrev)
+
+
+class Statenames(models.Model):
+    stateabbrev = models.OneToOneField(Statedata, models.DO_NOTHING, db_column='stateabbrev', primary_key=True)
+    state = models.CharField(max_length=14)
+
+    class Meta:
+        db_table = 'statenames'
     
     def __str__(self):
-        return (self.state)  #may need fixed
+        return (self.state)
+
 
 class Triple(models.Model):
-    id = models.IntegerField(primary_key=True) #may need to be removed-primary key
-    prescriberid = models.ForeignKey(Prescriber, default="", on_delete= models.DO_NOTHING, to_field='npi')
-    drugname = models.CharField(max_length=30)
+    id = models.IntegerField(primary_key=True)
+    npi = models.ForeignKey(Prescriber, models.DO_NOTHING, db_column='npi')
+    drugname = models.ForeignKey(Drug, models.DO_NOTHING, db_column='drugname')
     qty = models.IntegerField()
-    
-    
+
     class Meta:
-        db_table= 'pd_triple'
-    
-    def __str__(self):
-        return (self.drugname) #may need fixed
+        db_table = 'triple'
