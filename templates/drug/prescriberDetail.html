@@ -22,10 +22,23 @@
           <p>
             Prescriber Detail Page
           </p>
-         
-          </p>
         </div>
       </div>
     </div>
+    
+    <table class="table table-striped cust-table">
+      <thead class="thead thead-light">
+          <th>Drug Name</th>
+          <th>Amount Prescribed</th>
+          <th>Average Prescribed</th>
+      </thead>
+      {% for drug in drugList %}
+      <tr class="drugVis" id="{{ forloop.counter0 }}">
+        <td id="{{forloop.counter0}}gender">{{drug.0}}</td>
+        <td id="{{forloop.counter0}}gender">{{drug.1}}</td>
+        <td id="{{forloop.counter0}}gender">{{drug.2}}</td>
+      </tr>
+      {% endfor %}
+    </table>
   </main>
 {% endblock%}

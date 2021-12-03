@@ -13,9 +13,9 @@
 .betterfont {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.btncolor{
-  color:white;
-  background-color: #66C1DF ;
+.btncolor {
+  color: white;
+  background-color: #66c1df;
 }
 :root {
   --bs-blue: #0d6efd;
@@ -11646,3 +11646,4 @@ header.masthead .post-heading .meta a {
     font-size: 2.25rem;
   }
 }
+
