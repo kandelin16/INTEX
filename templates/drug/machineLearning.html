@@ -47,18 +47,21 @@
           <label for="specialty"> </label>
           <input type="text" id="specialty" name="specialty" placeholder="Specialty" class="form-control" />
         
-   
+   <br>
           <!--drop down for gender-->
-          <label for="gender" > </label>
-          <select required name="gender" class="form-control">
-              <option value="" disbaled selected hidden>Gender</option>
+          <select id="filterByGender" class="form-control custom-flex-item">
+            <option selected value=""> Select A Gender </option>
+            <option value="M">M</option>
+            <option value="F">F</option>
           </select>
         
-      
+      <br>
           <!--drop down for state-->
-          <label for="state"> </label>
-          <select required name="state" id="state" class="form-control">
-            <option value="" disbaled selected hidden>State</option>
+          <select id="filterByState" class="form-control custom-flex-item">
+            <option selected value="">Select A State</option>
+            {% for state in states%}
+              <option value="{{state}}">{{state}}</option>
+            {% endfor %}
           </select>
                 <br/>
          

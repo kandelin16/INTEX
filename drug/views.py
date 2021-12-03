@@ -1,6 +1,8 @@
+from typing import ContextManager
 from django.shortcuts import render
 from django.http import HttpResponse
 from . import models
+
 
 # Create your views here.
 
@@ -17,7 +19,13 @@ def drugSearchPageView(request):
     return render(request, 'drug/drugSearch.html')
 
 def machineLearningPageView(request):
-    return render(request, 'drug/machineLearning.html')
+    prescribers = models.Prescriber.objects.all()
+    states = models.Statedata.objects.all()
+    context = {
+        "prescriber": prescribers,
+        "states": states
+    }
+    return render(request, 'drug/machineLearning.html', context)
 
 def prescriberDetailPageView(request, prescriber):
     #get prescriber requested
