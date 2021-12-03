@@ -12,11 +12,31 @@ def indexPageView(request):
 def aboutPageView(request):
     return render(request, 'drug/about.html')
 
-def drugDetailPageView(request):
+def drugDetailPageView(request, drug):
+    
     return render(request, 'drug/drugDetail.html')
 
 def drugSearchPageView(request):
-    return render(request, 'drug/drugSearch.html')
+    druginfo = models.Drug.objects.all()
+    
+    context = {
+        "drug": druginfo,
+       
+    }
+
+    return render(request, 'drug/drugSearch.html', context)
+
+def drugDeleteView(request, drug):
+    tempDrug = models.Drug.objects.get(drugname=drug)
+    tempDrug.delete()
+    druginfo = models.Drug.objects.all()
+    
+    context = {
+        "drug": druginfo,
+       
+    }
+
+    return render(request, 'drug/drugSearch.html', context)
 
 def machineLearningPageView(request):
     prescribers = models.Prescriber.objects.all()

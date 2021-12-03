@@ -22,34 +22,49 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <h3 class="text-center">Input your search terms below</h3>
-        <div class="search-flex">        
-          <input type="text" id="filterTable" onkeyup="filter();" placeholder="Search by name or specialty" class="form-control custom-flex-item"/>
-          <select id="filterByGender" onchange="filter();" class="form-control custom-flex-item">
-            <option selected value=""> -- Select A Gender -- </option>
+        <div class="search-flex">
+          <input
+            type="text"
+            id="filterTable"
+            onkeyup="filter();"
+            placeholder="Search by name or specialty"
+            class="form-control custom-flex-item"
+          />
+          <select
+            id="filterByGender"
+            onchange="filter();"
+            class="form-control custom-flex-item"
+          >
+            <option selected value="">-- Select A Gender --</option>
             <option value="M">M</option>
             <option value="F">F</option>
           </select>
-          <select id="filterByState" onchange="filter();" class="form-control custom-flex-item">
-            <option selected value=""> -- Select A State -- </option>
+          <select
+            id="filterByState"
+            onchange="filter();"
+            class="form-control custom-flex-item"
+          >
+            <option selected value="">-- Select A State --</option>
             {% for state in states%}
-              <option value="{{state}}">{{state}}</option>
+            <option value="{{state}}">{{state}}</option>
             {% endfor %}
           </select>
         </div>
 
-
         <table class="table table-striped cust-table">
           <thead class="thead thead-light">
-              <th>Name</th>
-              <th>Gender</th>
-              <th>State</th>
-              <th>Specialty</th>
-              <th>Delete</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>State</th>
+            <th>Specialty</th>
+            <th>Delete</th>
           </thead>
           {% for dr in prescriber %}
           <tr class="drVis" id="{{ forloop.counter0 }}">
             {% with dr.npi as npi %}
-            <td id="{{forloop.counter0}}name"><a href="{% url 'drDetail' prescriber=npi %}">{{dr}}</a></td>
+            <td id="{{forloop.counter0}}name">
+              <a href="{% url 'drDetail' prescriber=npi %}">{{dr}}</a>
+            </td>
             <td id="{{forloop.counter0}}gender">{{dr.gender}}</td>
             <td id="{{forloop.counter0}}state">{{dr.state}}</td>
             <td id="{{forloop.counter0}}spec">{{dr.specialty}}</td>
