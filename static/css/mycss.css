@@ -1,0 +1,14 @@
+body {
+  background-color: white;
+  color: black;
+}
+
+h1 {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.btncolor {
+  color: white;
+
+  background-color: #72accd;
+}

@@ -5,11 +5,7 @@ from . import models
 # Create your views here.
 
 def indexPageView(request):
-    people = models.Statenames.objects.all()
-    context = {
-        "people": people,
-    }
-    return render(request, 'drug/index.html', context)
+    return render(request, 'drug/index.html')
 
 def aboutPageView(request):
     return render(request, 'drug/about.html')
@@ -23,20 +19,32 @@ def drugSearchPageView(request):
 def machineLearningPageView(request):
     return render(request, 'drug/machineLearning.html')
 
-def prescriberDetailPageView(request):
-    return render(request, 'drug/prescriberDetail.html')
+def prescriberDetailPageView(request, prescriber):
+    dr = models.Prescriber.objects.get(npi=prescriber)
+
+    context = {
+        'dr': dr,
+    }
+
+    return render(request, 'drug/prescriberDetail.html', context)
 
 def prescriberSearchPageView(request):    
-    return render(request, 'drug/prescriberSearch.html')
+    prescribers = models.Prescriber.objects.all()
+    states = models.Statedata.objects.all()
+    context = {
+        "prescriber": prescribers,
+        "states": states
+    }
 
-def prescriberSearch(request):
-    if request.method == "POST":
-        prescriber = models.Prescriber.objects.all() #maybe should be get() id or something
-        prescriber.fname= request.POST['fname']
-        prescriber.lname= request.POST['lname']
-        prescriber.credentials= request.POST['credentials'] 
-        prescriber.gender= request.POST['gender'] 
-        prescriber.state= request.POST['state'] 
-        prescriber.specialty= request.POST['specialty'] 
-    
-    return()
+    return render(request, 'drug/prescriberSearch.html', context)
+
+def deletePrescriberView(request, prescriber):
+    dr = models.Prescriber.objects.get(npi=prescriber)
+    dr.delete()
+    prescribers = models.Prescriber.objects.all()
+    states = models.Statedata.objects.all()
+    context = {
+        "prescriber": prescribers,
+        "states": states
+    }
+    return render(request, 'drug/prescriberSearch.html', context)
