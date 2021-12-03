@@ -20,8 +20,59 @@
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
-          <p>
-            Machine Learning Page
+            <h2>Predictor: </h2>
+            <span class="subheading">The Total Number of Prescriptions a Prescriber will Prescribe</span>
+            <br>
+            <!--label and input for npi-->
+          <label for="npi"> </label>
+          <input type="npi" id="npi" name="npi" placeholder="NPI" class="form-control"/>
+         
+       
+            <!--label and input for first name-->
+          <label for="fname"> </label>
+          <input type="text" id="fname" name="fname" placeholder="First Name" class="form-control"/>
+       
+     
+           <!--label and input for last name-->
+           <label for="lname"> </label>
+           <input type="text" id="lname" name="lname" placeholder="Last Name" class="form-control"/>
+          
+        
+          <!--label and input for credential-->
+          <label for="credentials"> </label>
+          <input type="text" id="credentials" name="credentials" placeholder="Credentials" class="form-control" />
+       
+       
+          <!--label and input for specialty-->
+          <label for="specialty"> </label>
+          <input type="text" id="specialty" name="specialty" placeholder="Specialty" class="form-control" />
+        
+   
+          <!--drop down for gender-->
+          <label for="gender" > </label>
+          <select required name="gender" class="form-control">
+              <option value="" disbaled selected hidden>Gender</option>
+          </select>
+        
+      
+          <!--drop down for state-->
+          <label for="state"> </label>
+          <select required name="state" id="state" class="form-control">
+            <option value="" disbaled selected hidden>State</option>
+          </select>
+                <br/>
+         
+          <!--label and input for last name-->
+          <label for="isopioidprescriber"> Is Opioid Prescriber: </label>
+          <input type="checkbox" id="isopioidprescriber" name="isopioidprescriber" class="checkbox-lg small" value="True"  />
+
+          <br />
+          <br/>
+     
+          <button class="btncolor" type="submit">Predict</button>
+
+         
+
           </p>
          
           </p>
