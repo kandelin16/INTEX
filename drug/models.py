@@ -270,7 +270,7 @@ class Prescriber(models.Model):
 
 class Credential(models.Model):
     id = models.IntegerField(primary_key=True)
-    npi = models.ForeignKey('Prescriber', models.DO_NOTHING, db_column='npi')
+    npi = models.ForeignKey('Prescriber', models.CASCADE, db_column='npi')
     credentials = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
@@ -315,7 +315,7 @@ class Statenames(models.Model):
 
 class Triple(models.Model):
     id = models.IntegerField(primary_key=True)
-    npi = models.ForeignKey(Prescriber, models.DO_NOTHING, db_column='npi')
+    npi = models.ForeignKey(Prescriber, models.CASCADE, db_column='npi')
     drugname = models.ForeignKey(Drug, models.DO_NOTHING, db_column='drugname')
     qty = models.IntegerField()
 
