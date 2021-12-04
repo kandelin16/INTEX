@@ -1,19 +1,19 @@
-function filterOpioid(dru) {
-  input = document.getElementById("filterIsOpioid").value.toLowerCase();
+function filterGender(drs) {
+  input = document.getElementById("filterByIsOpioid").value.toLowerCase();
   if (input != "") {
-    for (var count = 0; count < dru.length; count++) {
-      tempDrug = dru[count];
-      genObject = document.getElementById(tempDoc.id + "isopiod");
+    for (var count = 0; count < drs.length; count++) {
+      tempDoc = drs[count];
+      genObject = document.getElementById(tempDoc.id + "gender");
       if (genObject.innerHTML.toLowerCase().includes(input)) {
-        tempDrug.hidden = false;
+        tempDoc.hidden = false;
       } else {
-        tempDrug.hidden = true;
+        tempDoc.hidden = true;
       }
     }
   }
 }
 
-function filterDrugName(drs) {
+function filterState(drs) {
   input = document.getElementById("filterByState").value.toLowerCase();
   passDown = [];
   if (input != "") {
@@ -33,27 +33,28 @@ function filterDrugName(drs) {
   }
 }
 
-function filter() {
-  drs = document.getElementsByClassName("drVis");
+function filterDrug() {
+  dru = document.getElementsByClassName("drugclass");
   input = document.getElementById("filterTable").value.toLowerCase();
   passDown = [];
   if (input != "") {
-    for (var count = 0; count < drs.length; count++) {
-      tempDoc = drs[count];
-      nameObject = document.getElementById(tempDoc.id + "name");
-      specObject = document.getElementById(tempDoc.id + "spec");
+    for (var count = 0; count < dru.length; count++) {
+      tempDrug = dru[count];
+
+      nameObject = document.getElementById(tempDrug.id + "drugname");
+      opioidObject = document.getElementById(tempDrug.id + "isopiod");
       if (
         nameObject.innerHTML.toLowerCase().includes(input) ||
-        specObject.innerHTML.toLowerCase().includes(input)
+        opioidObject.innerHTML.toLowerCase().includes(input)
       ) {
-        tempDoc.hidden = false;
-        passDown.push(tempDoc);
+        tempDrug.hidden = false;
+        passDown.push(tempDrug);
       } else {
-        tempDoc.hidden = true;
+        tempDrug.hidden = true;
       }
     }
     filterState(passDown);
   } else {
-    filterState(drs);
+    filterState(dru);
   }
 }

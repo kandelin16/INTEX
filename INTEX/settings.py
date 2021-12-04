@@ -81,9 +81,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Intex',
         'USER': 'postgres',
-        'PASSWORD': 'admin',
+        'PASSWORD': 'iloveclouds2',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5433',
     }
 }
 
