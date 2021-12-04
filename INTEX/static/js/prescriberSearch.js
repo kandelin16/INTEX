@@ -1,19 +1,19 @@
-function filterOpioid(dru) {
-  input = document.getElementById("filterIsOpioid").value.toLowerCase();
+function filterGender(drs) {
+  input = document.getElementById("filterByGender").value.toLowerCase();
   if (input != "") {
-    for (var count = 0; count < dru.length; count++) {
-      tempDrug = dru[count];
-      genObject = document.getElementById(tempDoc.id + "isopiod");
+    for (var count = 0; count < drs.length; count++) {
+      tempDoc = drs[count];
+      genObject = document.getElementById(tempDoc.id + "gender");
       if (genObject.innerHTML.toLowerCase().includes(input)) {
-        tempDrug.hidden = false;
+        tempDoc.hidden = false;
       } else {
-        tempDrug.hidden = true;
+        tempDoc.hidden = true;
       }
     }
   }
 }
 
-function filterDrugName(drs) {
+function filterState(drs) {
   input = document.getElementById("filterByState").value.toLowerCase();
   passDown = [];
   if (input != "") {
@@ -42,18 +42,29 @@ function filter() {
       tempDoc = drs[count];
       nameObject = document.getElementById(tempDoc.id + "name");
       specObject = document.getElementById(tempDoc.id + "spec");
-      if (
-        nameObject.innerHTML.toLowerCase().includes(input) ||
-        specObject.innerHTML.toLowerCase().includes(input)
-      ) {
+      credParent = document.getElementById(tempDoc.id + "cred");
+      compiledCreds = ""
+      
+      if (credParent) {
+        credObjects = credParent.children;
+        for (var i = 0; i < credObjects.length; i++) {
+          child = credObjects[i]
+          compiledCreds += child.innerHTML
+        }
+      }
+      
+      if (nameObject.innerHTML.toLowerCase().includes(input) || specObject.innerHTML.toLowerCase().includes(input) || compiledCreds.toLowerCase().includes(input)) {
         tempDoc.hidden = false;
         passDown.push(tempDoc);
-      } else {
+      } 
+      else {
         tempDoc.hidden = true;
       }
     }
+    
     filterState(passDown);
-  } else {
+  } 
+  else {
     filterState(drs);
   }
 }

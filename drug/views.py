@@ -63,9 +63,7 @@ def prescriberDetailPageView(request, prescriber):
     #loops through each dr attribute that is a drug. 
     for att in attributes:
         if ((type(attributes[att]) == int) and (att != 'totalperscriptions') and (attributes[att] != 0) and (att != 'npi')):
-
             avg = int(averagePrec(att))
-
             name = att
             amount = attributes[att]
             tempTup = (name, amount, avg)
@@ -82,8 +80,18 @@ def prescriberDetailPageView(request, prescriber):
 def prescriberSearchPageView(request):    
     prescribers = models.Prescriber.objects.all()
     states = models.Statedata.objects.all()
+
+    tuples = []
+    for dr in prescribers:
+        npi = "npi"
+        value = dr.npi
+        creds = models.Credential.objects.filter(**{npi: value})
+        temptup = (dr, creds)
+        tuples.append(temptup)
+
+
     context = {
-        "prescriber": prescribers,
+        "prescriber": tuples,
         "states": states
     }
 
@@ -94,15 +102,20 @@ def deletePrescriberView(request, prescriber):
     dr.delete()
     prescribers = models.Prescriber.objects.all()
     states = models.Statedata.objects.all()
+    tuples = []
+    for dr in prescribers:
+        creds = models.Credential.objects.filter(npi=dr.npi)
+        temptup = (dr, creds)
+        tuples.append(temptup)
     context = {
-        "prescriber": prescribers,
+        "prescriber": tuples,
         "states": states
     }
     return render(request, 'drug/prescriberSearch.html', context)
 
 def averagePrec(att):
-    prescribers = models.Prescriber.objects.all()
-
+    filterKey = att + '__gt'
+    prescribers = models.Prescriber.objects.filter(**{filterKey: 0})
     total = 0
     count = 0
     for dr in prescribers:
@@ -112,3 +125,10 @@ def averagePrec(att):
             count += 1
     
     return round((total / count), 0)
+
+
+
+def updatePrescriberView(request, drugName, number, npiT):
+    dr = models.Prescriber.objects.filter(npi=npiT)
+    #dr.drugName = number
+    dr.update()

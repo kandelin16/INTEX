@@ -276,9 +276,6 @@ class Credential(models.Model):
     class Meta:
         db_table = 'credential'
 
-    def __str__(self):
-        return (self.credentials)
-
 
 class Drug(models.Model):
     drugname = models.CharField(primary_key=True, max_length=30)
