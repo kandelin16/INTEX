@@ -22,6 +22,25 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <br />
+        <div class="search-flex">
+          <input
+            type="text"
+            id="filterTable"
+            onkeyup="filterDrug();"
+            placeholder="Drug Name"
+            class="form-control custom-flex-item"
+          />
+
+          <select
+            id="filterIsOpioid"
+            onchange="filterDrug();"
+            class="form-control custom-flex-item"
+          >
+            <option selected value="">-- Is an Opioid --</option>
+            <option value="TRUE">YES</option>
+            <option value="FALSE">NO</option>
+          </select>
+        </div>
         <!--Table of drugs-->
         <table class="table table-striped cust-table">
           <thead class="thead thead-light">
