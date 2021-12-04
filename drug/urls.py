@@ -7,6 +7,7 @@ from .views import machineLearningPageView
 from .views import prescriberDetailPageView
 from .views import prescriberSearchPageView
 from .views import deletePrescriberView
+from .views import updatePrescriberView
 
 urlpatterns= [ 
     path("prescriberSearch/", prescriberSearchPageView, name="prescriberSearch"),
@@ -17,4 +18,5 @@ urlpatterns= [
     path("", indexPageView, name="index"),
     path("delete/<str:prescriber>", deletePrescriberView, name="delete"),
     path("prescriberDetail/<str:prescriber>", prescriberDetailPageView, name="drDetail"),
+    path("updatePrescriber/<str:drugName>/<str:number>/<str:npiT>", updatePrescriberView, name="updatePrescriber")
 ]

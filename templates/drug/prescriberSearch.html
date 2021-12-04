@@ -23,7 +23,7 @@
       <div class="col-md-10 col-lg-8 col-xl-7">
         <h3 class="text-center">Input your search terms below</h3>
         <div class="search-flex">        
-          <input type="text" id="filterTable" onkeyup="filter();" placeholder="Search by name or specialty" class="form-control custom-flex-item"/>
+          <input type="text" id="filterTable" onkeyup="filter();" placeholder="Search by name, credential, or specialty" class="form-control custom-flex-item"/>
           <select id="filterByGender" onchange="filter();" class="form-control custom-flex-item">
             <option selected value=""> -- Select A Gender -- </option>
             <option value="M">M</option>
@@ -53,6 +53,7 @@
             <td id="{{forloop.counter0}}gender">{{dr.gender}}</td>
             <td id="{{forloop.counter0}}state">{{dr.state}}</td>
             <td id="{{forloop.counter0}}spec">{{dr.specialty}}</td>
+            <span id="{{forloop.counter0}}cred" value="{{dr.credential}}"hidden></span>
             <td><a href="{% url 'delete' prescriber=npi %}">❌</a></td>
             {% endwith %}
           </tr>
