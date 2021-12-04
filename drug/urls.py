@@ -9,6 +9,7 @@ from .views import prescriberSearchPageView
 from .views import deletePrescriberView
 from .views import updatePrescriberView
 from .views import addPrescriberView
+from .views import updatePrescriberDetailsView
 
 urlpatterns= [ 
     path("prescriberSearch/", prescriberSearchPageView, name="prescriberSearch"),
@@ -20,5 +21,6 @@ urlpatterns= [
     path("delete/<str:prescriber>", deletePrescriberView, name="delete"),
     path("prescriberDetail/<str:prescriber>", prescriberDetailPageView, name="drDetail"),
     path("updatePrescriber/<str:drugName>/<str:number>/<str:npiT>", updatePrescriberView, name="updatePrescriber"),
-    path("addPrescriber/", addPrescriberView, name="AddPrescriber")
+    path("addPrescriber/", addPrescriberView, name="AddPrescriber"),
+    path("updatePrescriber/", updatePrescriberDetailsView, name="updatePrescriber")
 ]

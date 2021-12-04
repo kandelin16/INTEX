@@ -71,3 +71,22 @@ function buttonHandle(id) {
         submitUpdate(id)
     }
 }
+
+function enableBoxes() {
+    inputs = document.getElementsByClassName("updateForm")
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].disabled = false
+        document.getElementById("revealAndUpdateButton").value = "Submit"
+    }
+}
+
+function updateHandler() {
+    if (document.getElementById("revealAndUpdateButton").value == "Update Prescriber") {
+        enableBoxes()
+    }
+    else {
+        if (confirm("Would you like to update this prescriber?")) {
+            document.getElementById("formnumbertwo").submit()
+        }
+    }
+}
