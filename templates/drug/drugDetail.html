@@ -34,8 +34,13 @@
           </tr>
           
         </table>
+        <h2 class="post-title">
+          Top Prescribers:
+        </h2>
         {% for item in list %}
-        <p> {{item}} </p>
+        
+        
+        {{forloop.counter}}. {{item}} <br>
         {% endfor %}
 
         
