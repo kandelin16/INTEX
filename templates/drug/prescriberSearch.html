@@ -41,29 +41,32 @@
         </div>
 
         <div>
-          <form action="addPrescriber/" method="post" hidden id="thehiddensacredmostholyform">
-            <label for="fname">First Name</label>
-            <input type="text" name="fname" id="fname"/>
-            <label for="lname">Last Name</label>
-            <input type="text" name="lname" id="lname"/>
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender" id="gender">
-              <option selected> -- Select a Gender -- </option>
+          <form action="../addPrescriber/" method="post" hidden id="thehiddensacredmostholyform" class="flex-form">{% csrf_token %}
+            <input type="text" id="fname" name="fname" placeholder="First Name" class="form-control"/> 
+            <input type="text" id="lname" name="lname" placeholder="Last Name" class="form-control"/>
+            <input type="text" id="specialty" name="specialty" placeholder="Specialty" class="form-control" />
+            <br>
+            <!--drop down for gender-->
+            <select name="gender" id="gender"class="form-control custom-flex-item">
+              <option selected value=""> Select A Gender </option>
               <option value="M">Male</option>
               <option value="F">Female</option>
             </select>
-            <label for="state">State</label>
-            <select id="state" name="state">
-              <option selected value="">-- Select A State --</option>
+            <br>
+            <!--drop down for state-->
+            <select id="state" name="state" class="form-control custom-flex-item">
+              <option selected value="">Select A State</option>
               {% for state in states%}
-              <option value="{{state}}">{{state}}</option>
+                <option value="{{state}}">{{state}}</option>
               {% endfor %}
             </select>
-            <label for="specialty">Specialty</label>
-            <input type="text" name="specialty" id="specialty"/>
-            <label for="opioid">Is Opioid Prescriber</label>
-            <input type="checkbox" name="opioid" id="opioid"/>
-            <input type="button" class="btn btn-secondary" onclick="verifyForm();"/>
+            <br/>
+            <select id="opioid" name="opioid" class="form-control">
+              <option selected> -- Is DR an opioid presciber? -- </option>
+              <option value="True">Yes</option>
+              <option value="False">No</option>
+            </select>
+            <input type="button" class="btn btn-secondary btn-margin" value="submit" onclick="verifyForm();"/>
           </form>
         </div>
         <table class="table table-striped cust-table">
