@@ -17,7 +17,11 @@ def drugDetailPageView(request, drug):
     drug = re.sub(r'[^a-zA-Z]','', drug)
     drug=drug.lower()
     list= models.Prescriber.objects.order_by(drug)[0:10]
+<<<<<<< HEAD
+    print(list)
+=======
 
+>>>>>>> 08f85cb628543e653238d489a3e48d0024e06c43
 
     context = {
         'dru': dru,
@@ -138,3 +142,33 @@ def updatePrescriberView(request, drugName, number, npiT):
     dr = models.Prescriber.objects.filter(npi=npiT)
     #dr.drugName = number
     dr.update()
+
+def addPrescriberView(request):
+    fname = request.POST.get("fname", "")
+    lname = request.POST.get("lname", "")
+    gender = request.POST.get("gender", "")
+    state = request.POST.get("state", "")
+    specialty = request.POST.get("specialty", "")
+    isopioid = request.POST.get("opioid", "")
+
+    newDoc = models.Prescriber(fname=fname, lname=lname, gender=gender, state=state, specialty=specialty, isopiodprescriber = isopioid, totalperscriptions = 0)
+    newDoc.save()
+
+    prescribers = models.Prescriber.objects.all()
+    states = models.Statedata.objects.all()
+
+    tuples = []
+    for dr in prescribers:
+        npi = "npi"
+        value = dr.npi
+        creds = models.Credential.objects.filter(**{npi: value})
+        temptup = (dr, creds)
+        tuples.append(temptup)
+
+
+    context = {
+        "prescriber": tuples,
+        "states": states
+    }
+
+    return render(request, 'drug/prescriberSearch.html', context)
