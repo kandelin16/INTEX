@@ -89,7 +89,16 @@ h1 {
 
 .flex-form {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.flex-half-two {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: auto;
 }
