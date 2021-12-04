@@ -2,7 +2,7 @@ from typing import ContextManager
 from django.shortcuts import render
 from django.http import HttpResponse
 from . import models
-
+import re 
 
 # Create your views here.
 
@@ -14,9 +14,14 @@ def aboutPageView(request):
 
 def drugDetailPageView(request, drug):
     dru = models.Drug.objects.get(drugname=drug)
+    drug = re.sub(r'[^a-zA-Z]','', drug)
+    drug=drug.lower()
+    list= models.Prescriber.objects.order_by(drug)[10]
+    print(list)
 
     context = {
         'dru': dru,
+        "list": list
         
     }
     return render(request, 'drug/drugDetail.html', context)
