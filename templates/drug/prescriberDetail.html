@@ -1,9 +1,11 @@
 {% extends 'base.html' %}{% load static%} {% block content%}
 <!-- Page Header-->
+<script src="{% static 'js/prescriberDetail.js' %}"></script>
 <header
   class="masthead"
   style="background-image: url('{% static 'assets/img/phone.jpg' %}')"
 >
+
   <div class="container position-relative px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
@@ -19,26 +21,30 @@
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
-          <p>
-            Prescriber Detail Page
-          </p>
+          <p>Total prescriptions: {{dr.totalperscriptions}}</p>
+          <p>Is opioid prescriber? {{dr.isopiodprescriber}}</p>
+          <span hidden id="npi" value="{{dr.npi}}"></span>
         </div>
       </div>
+
+      
+
+      <table class="table table-striped cust-table">
+        <thead class="thead thead-light">
+            <th>Drug Name</th>
+            <th>Amount Prescribed</th>
+            <th>Average Prescribed</th>
+        </thead>
+        {% for drug in drugList %}
+        <tr class="drugVis" id="{{ forloop.counter0 }}">
+          <td id="{{forloop.counter0}}drugName">{{drug.0}}</td>
+          <td id="{{forloop.counter0}}drugAmount"><span id="{{drug.0}}P" value="{{drug.1}}">{{drug.1}}</span><input type="button" id="{{drug.0}}" onclick="buttonHandle(this.id)" value="Update"/></td>
+          <td id="{{forloop.counter0}}avgPrescribed">{{drug.2}}</td>
+        </tr>
+        {% endfor %}
+      </table>
     </div>
     
-    <table class="table table-striped cust-table">
-      <thead class="thead thead-light">
-          <th>Drug Name</th>
-          <th>Amount Prescribed</th>
-          <th>Average Prescribed</th>
-      </thead>
-      {% for drug in drugList %}
-      <tr class="drugVis" id="{{ forloop.counter0 }}">
-        <td id="{{forloop.counter0}}gender">{{drug.0}}</td>
-        <td id="{{forloop.counter0}}gender">{{drug.1}}</td>
-        <td id="{{forloop.counter0}}gender">{{drug.2}}</td>
-      </tr>
-      {% endfor %}
-    </table>
+
   </main>
 {% endblock%}

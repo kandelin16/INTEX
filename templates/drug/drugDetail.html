@@ -9,7 +9,7 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="page-heading">
-          <h1>Drug Details</h1>
+          <h1>{{dru}}</h1>
           <span class="subheading">Drug Information</span>
         </div>
       </div>
@@ -21,9 +21,29 @@
   <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
-        <p>
-          Drug Detail Page
-        </p>
+        <table class="table table-striped cust-table">
+          <thead class="thead thead-light">
+            <th>Drug Name</th>
+            <th>Is Opioid</th>
+          </thead>
+          
+          <tr class="drugclass" id="{{ forloop.counter0 }}">
+            <td id="{{forloop.counter0}}drugname">{{dru.drugname}}</td>
+            <td id="{{forloop.counter0}}isopiod">{{dru.isopiod}}</td>
+         
+          </tr>
+          
+        </table>
+        <h3 class="post-title">
+          Top 10 Prescribers:
+        </h3>
+        {% for item in list %}
+        
+        
+        {{forloop.counter}}. {{item}} <br>
+        {% endfor %}
+
+        
        
         </p>
       </div>
