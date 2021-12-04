@@ -17,11 +17,16 @@ def drugDetailPageView(request, drug):
     drug = re.sub(r'[^a-zA-Z]','', drug)
     drug=drug.lower()
     list= models.Prescriber.objects.order_by(drug)[0:10]
+<<<<<<< HEAD
     print(list)
+=======
+
+>>>>>>> 08f85cb628543e653238d489a3e48d0024e06c43
 
     context = {
         'dru': dru,
-        "list": list
+        "list": list,
+        "moddru": drug
         
     }
     return render(request, 'drug/drugDetail.html', context)

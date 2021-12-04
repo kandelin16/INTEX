@@ -50,7 +50,7 @@
    <br>
           <!--drop down for gender-->
           <select id="filterByGender" class="form-control custom-flex-item">
-            <option selected value=""> Select A Gender </option>
+            <option selected value="">-- Select A Gender --</option>
             <option value="M">M</option>
             <option value="F">F</option>
           </select>
@@ -58,7 +58,7 @@
       <br>
           <!--drop down for state-->
           <select id="filterByState" class="form-control custom-flex-item">
-            <option selected value="">Select A State</option>
+            <option selected value="">-- Select A State --</option>
             {% for state in states%}
               <option value="{{state}}">{{state}}</option>
             {% endfor %}
@@ -66,9 +66,12 @@
                 <br/>
          
           <!--label and input for last name-->
-          <label for="isopioidprescriber"> Is Opioid Prescriber: </label>
-          <input type="checkbox" id="isopioidprescriber" name="isopioidprescriber" class="checkbox-lg small" value="True"  />
-
+        
+          <select id="isopioidprescriber" class="form-control custom-flex-item">
+            <option selected value="">-- Is an Opioid Prescriber--</option>
+            <option value="TRUE">YES</option>
+            <option value="FALSE">NO</option>
+          </select>
           <br />
           <br/>
      
