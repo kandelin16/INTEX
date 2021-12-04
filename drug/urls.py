@@ -7,11 +7,8 @@ from .views import machineLearningPageView
 from .views import prescriberDetailPageView
 from .views import prescriberSearchPageView
 from .views import deletePrescriberView
-<<<<<<< HEAD
 from .views import updatePrescriberView
-=======
 from .views import drugDeleteView
->>>>>>> fa8c7e59a1bc4bea0dd5dc3f5fd12717a37b7d15
 
 urlpatterns= [ 
     path("prescriberSearch/", prescriberSearchPageView, name="prescriberSearch"),

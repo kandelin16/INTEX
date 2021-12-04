@@ -59,8 +59,7 @@ def prescriberDetailPageView(request, prescriber):
     for att in attributes:
         if ((type(attributes[att]) == int) and (att != 'totalperscriptions') and (attributes[att] != 0) and (att != 'npi')):
             avg = int(averagePrec(att))
-            #name = models.Drug.objects.filter(**{filterKey: att.lower()})
-            name = models.Drug.objects.raw("SELECT * FROM drug WHERE drugname = %s", [att])
+            name = att
             amount = attributes[att]
             tempTup = (name, amount, avg)
             tupList.append(tempTup)
@@ -77,7 +76,6 @@ def prescriberSearchPageView(request):
     prescribers = models.Prescriber.objects.all()
     states = models.Statedata.objects.all()
 
-    '''
     tuples = []
     for dr in prescribers:
         npi = "npi"
@@ -85,10 +83,10 @@ def prescriberSearchPageView(request):
         creds = models.Credential.objects.filter(**{npi: value})
         temptup = (dr, creds)
         tuples.append(temptup)
-    '''
+
 
     context = {
-        "prescriber": prescribers,
+        "prescriber": tuples,
         "states": states
     }
 

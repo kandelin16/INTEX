@@ -32,15 +32,13 @@
       <table class="table table-striped cust-table">
         <thead class="thead thead-light">
             <th>Drug Name</th>
-            <th>Is Opioid</th>
             <th>Amount Prescribed</th>
             <th>Average Prescribed</th>
         </thead>
         {% for drug in drugList %}
         <tr class="drugVis" id="{{ forloop.counter0 }}">
-          <td id="{{forloop.counter0}}drugName">{{drug.0.drugname}}</td>
-          <td>{{drug.0.isopiod}}</td>
-          <td id="{{forloop.counter0}}drugAmount"><span id="{{drug.0.drugname}}P" value="{{drug.1}}">{{drug.1}}</span><input type="button" id="{{drug.0.drugname}}" onclick="buttonHandle(this.id)" value="Update"/></td>
+          <td id="{{forloop.counter0}}drugName">{{drug.0}}</td>
+          <td id="{{forloop.counter0}}drugAmount"><span id="{{drug.0}}P" value="{{drug.1}}">{{drug.1}}</span><input type="button" id="{{drug.0}}" onclick="buttonHandle(this.id)" value="Update"/></td>
           <td id="{{forloop.counter0}}avgPrescribed">{{drug.2}}</td>
         </tr>
         {% endfor %}
