@@ -50,7 +50,7 @@
    <br>
           <!--drop down for gender-->
           <select id="filterByGender" class="form-control custom-flex-item">
-            <option selected value=""> Select A Gender </option>
+            <option selected value="">-- Select A Gender --</option>
             <option value="M">M</option>
             <option value="F">F</option>
           </select>
@@ -58,7 +58,7 @@
       <br>
           <!--drop down for state-->
           <select id="filterByState" class="form-control custom-flex-item">
-            <option selected value="">Select A State</option>
+            <option selected value="">-- Select A State --</option>
             {% for state in states%}
               <option value="{{state}}">{{state}}</option>
             {% endfor %}
