@@ -67,6 +67,8 @@ def prescriberDetailPageView(request, prescriber):
     attributes = vars(dr)
     tupList = []
 
+    states = models.Statedata.objects.all()
+
     #loops through each dr attribute that is a drug. 
     for att in attributes:
         if ((type(attributes[att]) == int) and (att != 'totalperscriptions') and (attributes[att] != 0) and (att != 'npi')):
@@ -79,7 +81,8 @@ def prescriberDetailPageView(request, prescriber):
 
     context = {
         'dr': dr,
-        'drugList': tupList
+        'drugList': tupList,
+        'states': states
     }
 
     return render(request, 'drug/prescriberDetail.html', context)

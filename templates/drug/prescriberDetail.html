@@ -21,8 +21,64 @@
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
-          <p>Total prescriptions: {{dr.totalperscriptions}}</p>
-          <p>Is opioid prescriber? {{dr.isopiodprescriber}}</p>
+          <form action="../addPrescriber/" method="post" id="thehiddensacredmostholyform" class="flex-form">{% csrf_token %}
+            <div>
+              <p>First Name</p>
+              <p>First Name</p>
+              <p>First Name</p>
+              <p>First Name</p>
+              <p>First Name</p>
+              <p>First Name</p>
+            </div>
+            <div class="flex-half-two">
+              <input type="text" id="fname" name="fname" placeholder="First Name" value={{dr.fname}} class="form-control" disabled/> 
+              <input type="text" id="lname" name="lname" placeholder="Last Name" value={{dr.lname}} class="form-control" disabled/>
+              <input type="text" id="specialty" name="specialty" placeholder="Specialty" value={{dr.specialty}} class="form-control" disabled/>
+              <br>
+              <!--drop down for gender-->
+              {% with dr.gender as myGender %}
+              <select name="gender" id="gender"class="form-control custom-flex-item" disabled/>
+                <option selected value=""> Select A Gender </option>
+                {% if myGender == "M" %}
+                  <option value="M" selected >Male</option>
+                  <option value="F">Female</option>
+                {% else %}
+                  <option value="M">Male</option>
+                  <option value="F" selected >Female</option>
+                {% endif %}
+              </select>
+              {% endwith %}
+              <br>
+              <!--drop down for state-->
+              {% with dr.state as myState %}
+              <select id="state" name="state" class="form-control custom-flex-item" disabled>
+                <!--<option selected value="">Select A State</option>-->
+                {% for state in states%}
+                  {% if state.stateabbrev == myState %}
+                    <option value="{{state}}" selected>{{state}}</option>
+                  {% else %}
+                    <option value="{{state}}">{{state}}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+              {% endwith %}
+              <br/>
+              {% with dr.isopiodprescriber as myOpioid %}
+              <select id="opioid" name="opioid" class="form-control" disabled>
+                <option selected> -- Is DR an opioid presciber? -- </option>
+                {% if myOpioid == "True"%}
+                  <option value="True" selected>Yes</option>
+                  <option value="False">No</option>
+                {% else %}
+                  <option value="True">Yes</option>
+                  <option value="False" selected>No</option>
+                {% endif %}
+              </select>
+              {% endwith %}
+            </div
+            <input type="button" class="btn btn-secondary btn-margin" value="submit" onclick="verifyForm();"/>
+            
+          </form>
           <span hidden id="npi" value="{{dr.npi}}"></span>
         </div>
       </div>
