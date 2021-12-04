@@ -68,3 +68,35 @@ function filter() {
     filterState(drs);
   }
 }
+
+
+
+function revealtheFORRMMMMMM() {
+  if (document.getElementById("thehiddensacredmostholyform").hidden) {
+    document.getElementById("thehiddensacredmostholyform").hidden = false;
+    document.getElementById("thebuttontorevealthehiddensacredmostholyform").value = "Cancel"
+  }
+  else {
+    document.getElementById("thehiddensacredmostholyform").hidden = true;
+    document.getElementById("thebuttontorevealthehiddensacredmostholyform").value = "Add Prescriber"
+  }
+  
+}
+
+function verifyForm() {
+  fname = document.getElementById("fname")
+  lname = document.getElementById("lname")
+  gender = document.getElementById("gender")
+  state = document.getElementById("state")
+  specialty = document.getElementById("specialty")
+  opioid = document.getElementById("opioid")
+
+  if (fname.value != "" && lname.value != "" && gender.value != "" && state.value != "" && specialty.value != "" && opioid.value != "") {
+    if (confirm("Would you like to submit the new prescriber?")) {
+      document.getElementById("thehiddensacredmostholyform").submit()
+    }
+  }
+  else {
+    alert("Please enter all information before submitting.")
+  }
+}

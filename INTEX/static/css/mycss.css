@@ -52,7 +52,7 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   margin-top: 1rem;
 }
 
@@ -68,4 +68,16 @@ h1 {
 
 .cust-table thead {
   background-color: #72accd;
+}
+
+.btn-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 3rem;
+  align-items: center;
+}
+
+.custom-btn {
+  width: auto;
 }

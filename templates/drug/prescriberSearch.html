@@ -23,7 +23,7 @@
       <div class="col-md-10 col-lg-8 col-xl-7">
         <h3 class="text-center">Input your search terms below</h3>
         <div class="search-flex">        
-          <input type="text" id="filterTable" onkeyup="filter();" placeholder="Search by name, credential, or specialty" class="form-control custom-flex-item"/>
+          <input type="text" id="filterTable" onkeyup="filter();" placeholder="Name, Credential, or Specialty" class="form-control custom-flex-item"/>
           <select id="filterByGender" onchange="filter();" class="form-control custom-flex-item">
             <option selected value=""> -- Select A Gender -- </option>
             <option value="M">M</option>
@@ -36,8 +36,38 @@
             {% endfor %}
           </select>
         </div>
+        <div class="btn-center">
+          <input type="button" value="Add Prescriber" class="btn btn-primary custom-btn" id="thebuttontorevealthehiddensacredmostholyform" onclick="revealtheFORRMMMMMM();"/>
+        </div>
 
+        <div>
+          <form action="addPrescriber/" method="post" hidden id="thehiddensacredmostholyform">
+            <label for="fname">First Name</label>
+            <input type="text" name="fname" id="fname"/>
+            <label for="lname">Last Name</label>
+            <input type="text" name="lname" id="lname"/>
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" id="gender">
+              <option selected> -- Select a Gender -- </option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+            <label for="state">State</label>
+            <select id="state" name="state">
+              <option selected value="">-- Select A State --</option>
+              {% for state in states%}
+              <option value="{{state}}">{{state}}</option>
+              {% endfor %}
+            </select>
+            <label for="specialty">Specialty</label>
+            <input type="text" name="specialty" id="specialty"/>
+            <label for="opioid">Is Opioid Prescriber</label>
+            <input type="checkbox" name="opioid" id="opioid"/>
+            <input type="button" class="btn btn-secondary" onclick="verifyForm();"/>
+          </form>
+        </div>
         <table class="table table-striped cust-table">
+          
           <thead class="thead thead-light">
             <th>Name</th>
             <th>Gender</th>
@@ -46,24 +76,26 @@
             <th>Credentials</th>
             <th>Delete</th>
           </thead>
+
           {% for dr in prescriber %}
-          <tr class="drVis" id="{{ forloop.counter0 }}">
-            {% with dr.0.npi as npi %}
-            <td id="{{forloop.counter0}}name">
-              <a href="{% url 'drDetail' prescriber=npi %}">{{dr.0}}</a>
-            </td>
-            <td id="{{forloop.counter0}}gender">{{dr.0.gender}}</td>
-            <td id="{{forloop.counter0}}state">{{dr.0.state}}</td>
-            <td id="{{forloop.counter0}}spec">{{dr.0.specialty}}</td>
-            <td id="{{forloop.counter0}}cred">
-              {% for cred in dr.1%}
-                <span>{{cred.credentials}} </span>
-              {% endfor %}
-            </td>
-            <td><a href="{% url 'delete' prescriber=npi %}">❌</a></td>
-            {% endwith %}
-          </tr>
+            <tr class="drVis" id="{{ forloop.counter0 }}">
+              {% with dr.0.npi as npi %}
+                <td id="{{forloop.counter0}}name">
+                  <a href="{% url 'drDetail' prescriber=npi %}">{{dr.0}}</a>
+                </td>
+                <td id="{{forloop.counter0}}gender">{{dr.0.gender}}</td>
+                <td id="{{forloop.counter0}}state">{{dr.0.state}}</td>
+                <td id="{{forloop.counter0}}spec">{{dr.0.specialty}}</td>
+                <td id="{{forloop.counter0}}cred">
+                  {% for cred in dr.1%}
+                    <span>{{cred.credentials}} </span>
+                  {% endfor %}
+                </td>
+                <td><a href="{% url 'delete' prescriber=npi %}">❌</a></td>
+              {% endwith %}
+            </tr>
           {% endfor %}
+
         </table>
       </div>
     </div>
