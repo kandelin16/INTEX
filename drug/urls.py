@@ -15,7 +15,6 @@ urlpatterns= [
     path("machineLearning/", machineLearningPageView, name="machineLearning"),
     path("drugSearch/", drugSearchPageView, name="drugSearch"),
     path("drugDetail/<str:drug>/", drugDetailPageView, name="drugDetail"),
-    path("drugDelete/<str:drug>/", drugDeleteView, name="drugDelete"),
     path("about/", aboutPageView, name="about"),
     path("", indexPageView, name="index"),
     path("delete/<str:prescriber>", deletePrescriberView, name="delete"),

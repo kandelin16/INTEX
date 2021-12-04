@@ -1,35 +1,15 @@
-function filterGender(drs) {
-  input = document.getElementById("filterByIsOpioid").value.toLowerCase();
+function filterOpioid(drus) {
+  input = document.getElementById("filterIsOpioid").value.toLowerCase();
   if (input != "") {
-    for (var count = 0; count < drs.length; count++) {
-      tempDoc = drs[count];
-      genObject = document.getElementById(tempDoc.id + "gender");
-      if (genObject.innerHTML.toLowerCase().includes(input)) {
-        tempDoc.hidden = false;
+    for (var count = 0; count < drus.length; count++) {
+      tempDru = drus[count];
+      opObject = document.getElementById(tempDru.id + "isopiod");
+      if (opObject.innerHTML.toLowerCase().includes(input)) {
+        tempDru.hidden = false;
       } else {
-        tempDoc.hidden = true;
+        tempDru.hidden = true;
       }
     }
-  }
-}
-
-function filterState(drs) {
-  input = document.getElementById("filterByState").value.toLowerCase();
-  passDown = [];
-  if (input != "") {
-    for (var count = 0; count < drs.length; count++) {
-      tempDoc = drs[count];
-      genObject = document.getElementById(tempDoc.id + "state");
-      if (genObject.innerHTML.toLowerCase().includes(input)) {
-        tempDoc.hidden = false;
-        passDown.push(tempDoc);
-      } else {
-        tempDoc.hidden = true;
-      }
-    }
-    filterGender(passDown);
-  } else {
-    filterGender(drs);
   }
 }
 
@@ -42,10 +22,8 @@ function filterDrug() {
       tempDrug = dru[count];
 
       nameObject = document.getElementById(tempDrug.id + "drugname");
-      opioidObject = document.getElementById(tempDrug.id + "isopiod");
       if (
-        nameObject.innerHTML.toLowerCase().includes(input) ||
-        opioidObject.innerHTML.toLowerCase().includes(input)
+        nameObject.innerHTML.toLowerCase().includes(input)
       ) {
         tempDrug.hidden = false;
         passDown.push(tempDrug);
@@ -53,8 +31,8 @@ function filterDrug() {
         tempDrug.hidden = true;
       }
     }
-    filterState(passDown);
+    filterOpioid(passDown);
   } else {
-    filterState(dru);
+    filterOpioid(dru);
   }
 }

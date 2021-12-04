@@ -31,11 +31,7 @@
             class="form-control custom-flex-item"
           />
 
-          <select
-            id="filterIsOpioid"
-            onchange="filterDrug();"
-            class="form-control custom-flex-item"
-          >
+          <select id="filterIsOpioid" onchange="filterDrug();" class="form-control custom-flex-item">
             <option selected value="">-- Is an Opioid --</option>
             <option value="TRUE">YES</option>
             <option value="FALSE">NO</option>
@@ -46,21 +42,15 @@
           <thead class="thead thead-light">
             <th>Drug Name</th>
             <th>Is Opioid</th>
-            <th>Delete</th>
           </thead>
           {% for pill in drug %}
           <tr class="drugclass" id="{{ forloop.counter0 }}">
             {% with pill.drugname as mycustomdrugname %}
             <td id="{{forloop.counter0}}drugname">
-              <a href="{% url 'drugDetail' drug=mycustomdrugname %}"
-                >{{pill.drugname}}</a
-              >
+              <a href="{% url 'drugDetail' drug=mycustomdrugname %}">{{pill.drugname}}</a>
             </td>
+            
             <td id="{{forloop.counter0}}isopiod">{{pill.isopiod}}</td>
-
-            <td>
-              <a href="{% url 'drugDelete' drug=mycustomdrugname  %}">❌</a>
-            </td>
             {% endwith %}
           </tr>
           {% endfor %}
