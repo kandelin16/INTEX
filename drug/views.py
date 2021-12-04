@@ -13,8 +13,13 @@ def aboutPageView(request):
     return render(request, 'drug/about.html')
 
 def drugDetailPageView(request, drug):
-    
-    return render(request, 'drug/drugDetail.html')
+    dru = models.Drug.objects.get(drugname=drug)
+
+    context = {
+        'dru': dru,
+        
+    }
+    return render(request, 'drug/drugDetail.html', context)
 
 def drugSearchPageView(request):
     druginfo = models.Drug.objects.all()
