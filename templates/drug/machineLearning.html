@@ -66,8 +66,19 @@
               </div>
             </form>
      
-            <center><button class="btn btn-primary btncolor2" onclick="verifyForm();">Run Recommender</button></center>
+            <center><button class="btn btn-primary recbtn" onclick="verifyForm();">Run Recommender</button></center>
+            {% if recommender == "True" %}
+            <div>
+              <br>
+              <h3>Recommended Items For The Prescriber You Input</h3>
+              
+              {% for thingie in drugList%}
+                {{forloop.counter}}. {{thingie}} <br/>
+              {% endfor %}
+            </div>
+          {% endif %}
           </div>
+          
           <div class="recommender-box-2">
             <h2>Predictor: </h2>
             <span class="subheading">Input Prescriber Information to Predict Their Total Prescription Count</span>
@@ -113,18 +124,12 @@
                 </select>
               </div>
             </form>
-            <center><button class="btn btn-primary" onclick="verifyPredictor();">Run Predictor</button></center>
+            <center><button class="btn btn-primary recbtn" onclick="verifyPredictor();">Run Predictor</button></center>
           
-          {% if recommender == "True" %}
-            <div>
-              <h3>Recommended Items For The Prescriber You Input</h3>
-              {% for thingie in drugList%}
-                {{forloop.counter}}. {{thingie}} <br/>
-              {% endfor %}
-            </div>
-          {% endif %}
+         
           {% if predictor == "True" %}
             <div>
+              <br>
               <h3>Total Prescriptions Prediction</h3>
               {{predTotal}}
             </div>
