@@ -10,7 +10,6 @@
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="page-heading">
           <h1>Search for a Prescriber</h1>
-          <span class="subheading"></span>
         </div>
       </div>
     </div>
@@ -36,8 +35,8 @@
             class="form-control custom-flex-item"
           >
             <option selected value="">-- Select A Gender --</option>
-            <option value="M">M</option>
-            <option value="F">F</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
           </select>
           <select
             id="filterByState"
@@ -54,7 +53,7 @@
           <input
             type="button"
             value="Add Prescriber"
-            class="btn btn-primary custom-btn"
+            class="btn btn-primary custom-btn searchbtn"
             id="thebuttontorevealthehiddensacredmostholyform"
             onclick="revealtheFORRMMMMMM();"
           />
@@ -122,12 +121,12 @@
             </select>
           </form>
           <center>
-          <input
-          type="button"
-          class="btn btn-primary btn-margin btn-narrow"
-          value="submit"
-          onclick="verifyForm();"
-          />
+            <input
+              type="button"
+              class="btn btn-primary btn-margin btn-narrow searchbtn"
+              value="Submit"
+              onclick="verifyForm();"
+            />
           </center>
         </div>
         <table class="table table-striped cust-table">
