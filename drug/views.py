@@ -195,7 +195,6 @@ def updatePrescriberDetailsView(request):
     dr = models.Prescriber.objects.get(npi=npi)
 
     fname = request.POST.get("fname", "")
-    print(fname)
     if (fname != dr.fname):
         sqlUpdate(npi, "fname", fname)
 
