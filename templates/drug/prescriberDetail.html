@@ -22,20 +22,19 @@
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
           <form action="../addPrescriber/" method="post" id="thehiddensacredmostholyform" class="flex-form">{% csrf_token %}
-            <div>
-              <p>First Name</p>
-              <p>First Name</p>
-              <p>First Name</p>
-              <p>First Name</p>
-              <p>First Name</p>
-              <p>First Name</p>
-            </div>
+            
             <div class="flex-half-two">
-              <input type="text" id="fname" name="fname" placeholder="First Name" value={{dr.fname}} class="form-control" disabled/> 
-              <input type="text" id="lname" name="lname" placeholder="Last Name" value={{dr.lname}} class="form-control" disabled/>
+            <label for="fname">First Name: </label>
+              <input type="text" id="fname" name="fname" placeholder="First Name" value={{dr.fname}} class="form-control" disabled/> <br>
+
+              <label for="lname">Last Name: </label>
+              <input type="text" id="lname" name="lname" placeholder="Last Name" value={{dr.lname}} class="form-control" disabled/><br>
+
+              <label for="specialty">Specialty: </label>
               <input type="text" id="specialty" name="specialty" placeholder="Specialty" value={{dr.specialty}} class="form-control" disabled/>
               <br>
               <!--drop down for gender-->
+              <label for="gender">Gender: </label>
               {% with dr.gender as myGender %}
               <select name="gender" id="gender"class="form-control custom-flex-item" disabled/>
                 <option selected value=""> Select A Gender </option>
@@ -50,6 +49,7 @@
               {% endwith %}
               <br>
               <!--drop down for state-->
+              <label for="state">State: </label>
               {% with dr.state as myState %}
               <select id="state" name="state" class="form-control custom-flex-item" disabled>
                 <!--<option selected value="">Select A State</option>-->
@@ -63,6 +63,7 @@
               </select>
               {% endwith %}
               <br/>
+              <label for="opioid">Is an Opioid Prescriber: </label>
               {% with dr.isopiodprescriber as myOpioid %}
               <select id="opioid" name="opioid" class="form-control" disabled>
                 <option selected> -- Is DR an opioid presciber? -- </option>
@@ -75,6 +76,7 @@
                 {% endif %}
               </select>
               {% endwith %}
+              <br>
             </div
             <input type="button" class="btn btn-secondary btn-margin" value="submit" onclick="verifyForm();"/>
             
