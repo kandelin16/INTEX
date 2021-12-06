@@ -18,9 +18,19 @@ h1 {
 }
 
 .btncolor {
-  color: white;
-
-  background-color: #72accd;
+  color: #4c7291;
+  border-color: white;
+  background-color: white;
+  /* padding: 13px; */
+  /* text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 12px; */
+}
+btncolor:hover {
+  background-color: #f7ae9e;
 }
 
 .ncenter {

@@ -10,6 +10,25 @@
         <div class="site-heading">
           <h1>The Opioid Crisis</h1>
           <span class="subheading">Resources about prescribers and different drugs</span>
+          <br>
+          <center>
+            <div >
+              <!--<a href="{% url 'drugSearch' %}">-->
+                &ensp;
+                
+                <a
+            class="btn btn-primary btn-xl text-uppercase js-scroll-trigger btncolor"
+            href="{% url 'prescriberSearch' %}"
+            >Search Prescribers</a
+          >
+          &ensp;
+          &ensp;
+          <a
+            class="btn btn-primary btn-xl text-uppercase js-scroll-trigger btncolor"
+            href="{% url 'drugSearch' %}"
+            >Seach Drugs Types</a
+          >
+              </center>
         </div>
       </div>
     </div>
@@ -19,26 +38,8 @@
 <div class="container px-4 px-lg-5">
   <div class="row gx-4 gx-lg-5 justify-content-center">
     <div class="col-md-10 col-lg-8 col-xl-7">
-      <!-- Post preview-->
-      <div class="post-preview">
-        <!--<a href="{% url 'drugSearch' %}">-->
-          &ensp;
-          
-          <a
-      class="btn btn-primary btn-xl text-uppercase js-scroll-trigger btncolor"
-      href="{% url 'prescriberSearch' %}"
-      >Search Prescribers</a
-    >
-    &ensp;
-    &ensp;
-    <a
-      class="btn btn-primary btn-xl text-uppercase js-scroll-trigger btncolor"
-      href="{% url 'drugSearch' %}"
-      >Seach Drugs Types</a
-    >
-    <br>
-    <br>
-    
+      
+   
 
 
           <h2>Opioid Overdose Crisis</h2>
