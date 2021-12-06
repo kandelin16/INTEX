@@ -11,6 +11,7 @@
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="site-heading">
           <h1>{{dr}}</h1>
+          <span class="subheading" id="totPrecCount">Total Prescriptions: {{dr.totalperscriptions}}</span>
         </div>
       </div>
     </div>
@@ -21,17 +22,16 @@
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
-          <form action="../addPrescriber/" method="post" id="thehiddensacredmostholyform" class="flex-form">{% csrf_token %}
-            
+          <form action="../updatePrescriber/" method="post" id="formNo2" class="flex-form">{% csrf_token %}
             <div class="flex-half-two">
             <label for="fname">First Name: </label>
-              <input type="text" id="fname" name="fname" placeholder="First Name" value={{dr.fname}} class="form-control" disabled/> <br>
+              <input type="text" id="fname" name="fname" placeholder="First Name" value={{dr.fname}} class="form-control updateForm" disabled/> <br>
 
               <label for="lname">Last Name: </label>
-              <input type="text" id="lname" name="lname" placeholder="Last Name" value={{dr.lname}} class="form-control" disabled/><br>
+              <input type="text" id="lname" name="lname" placeholder="Last Name" value={{dr.lname}} class="form-control updateForm" disabled/><br>
 
               <label for="specialty">Specialty: </label>
-              <input type="text" id="specialty" name="specialty" placeholder="Specialty" value={{dr.specialty}} class="form-control" disabled/>
+              <input type="text" id="specialty" name="specialty" placeholder="Specialty" value={{dr.specialty}} class="form-control updateForm" disabled/>
               <br>
               <!--drop down for gender-->
               <label for="gender">Gender: </label>
@@ -77,7 +77,7 @@
               </select>
               {% endwith %}
             </div>
-            <input type="hidden" value="{{dr.npi}}" name="npi"/>
+            <input type="hidden" value="{{dr.npi}}" name="npi" id="npi"/>
           </form>
           <input type="button" class="btn btn-secondary btn-margin" value="Update Prescriber" id="revealAndUpdateButton" onclick="updateHandler(this.id);"/>
           <span hidden id="npi" value="{{dr.npi}}"></span>
