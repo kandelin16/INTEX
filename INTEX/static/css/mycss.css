@@ -29,6 +29,12 @@ h1 {
   margin: 4px 2px;
   border-radius: 12px; */
 }
+
+.btncolor2 {
+  color: white;
+  border-color: #4c7291;
+  background-color: #4c7291;
+}
 btncolor:hover {
   background-color: #f7ae9e;
 }
