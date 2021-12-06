@@ -90,7 +90,12 @@
           </div>
         </div>
       </div>
-
+      <div class="recommender-box">
+          <center><h3>Top Recommended Drugs For This Prescriber</h3></center>
+          {% for drug in recDrugs %}
+            {{forloop.counter}}. {{drug}} </br>
+          {% endfor %}
+      </div>
       
 
       <table class="table table-striped cust-table">

@@ -95,7 +95,6 @@ h1 {
   width: 100%;
 }
 
-<<<<<<< HEAD
 .flex-form-item {
   margin-left: 15px;
   margin-right: 15px;
@@ -104,12 +103,19 @@ h1 {
 .screw-xl-7 {
   width: max-content;
 }
-=======
-.flex-half-two {
+
+.medium {
+  font-size: medium;
+}
+
+.recommender-box {
+  width: 60%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: auto;
+  background-color: lightgray;
+  padding: 20px;
+  border-radius: 30px;
+  margin-bottom: 3rem;
+  margin-right: 20%;
+  margin-left: 20%;
 }
->>>>>>> 606531427140c20d4a5301c85ee2d8e3b16c44cf

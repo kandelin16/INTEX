@@ -5,6 +5,10 @@ from django.http import HttpResponse
 from . import models
 import re 
 from django.db import connection
+import requests
+import json
+
+import drug
 
 # Create your views here.
 
@@ -18,14 +22,20 @@ def drugDetailPageView(request, drug):
     dru = models.Drug.objects.get(drugname=drug)
     drug = re.sub(r'[^a-zA-Z]','', drug)
     drug=drug.lower()
-    list= models.Prescriber.objects.order_by(drug)[0:10]
+    drugKey = "-" + drug
+    list= models.Prescriber.objects.order_by(drugKey)[0:10]
+    countList = []
+    
+    for dr in list:
+        attributes = vars(dr)
+        countList.append(attributes[drug])
 
 
 
     context = {
         'dru': dru,
         "list": list,
-        "moddru": drug
+        "counts": countList
         
     }
     return render(request, 'drug/drugDetail.html', context)
@@ -53,10 +63,8 @@ def drugDeleteView(request, drug):
     return render(request, 'drug/drugSearch.html', context)
 
 def machineLearningPageView(request):
-    prescribers = models.Prescriber.objects.all()
     states = models.Statedata.objects.all()
     context = {
-        "prescriber": prescribers,
         "states": states
     }
     return render(request, 'drug/machineLearning.html', context)
@@ -80,11 +88,15 @@ def prescriberDetailPageView(request, prescriber):
             tempTup = (name, amount, avg)
             tupList.append(tempTup)
 
+    #totalPrescriptions, credentials, specialty, gender, state, isopiodprescriber
+
+    recDrugs = callRecommender(dr.totalperscriptions, "", dr.specialty, dr.gender, dr.state, dr.isopiodprescriber)
 
     context = {
         'dr': dr,
         'drugList': tupList,
-        'states': states
+        'states': states,
+        'recDrugs': recDrugs
     }
 
     return render(request, 'drug/prescriberDetail.html', context)
@@ -252,3 +264,71 @@ def sqlUpdate(npi, attribute, newValue):
             cursor.execute("UPDATE prescriber SET state = %s WHERE npi = %s", [newValue, npi])
         if attribute == "isopiodprescriber":
             cursor.execute("UPDATE prescriber SET isopiodprescriber = %s WHERE npi = %s", [newValue, npi])
+
+
+def RecommenderView(request):
+    totalPrescriptions = request.POST.get("totalPrescriptions", "")
+    credentials = request.POST.get("credentials", "")
+    specialty = request.POST.get("specialty", "")
+    gender = request.POST.get("gender", "")
+    state = request.POST.get("state", "")
+    isopiodprescriber = request.POST.get("opioid", "")
+
+    drugList = callRecommender(totalPrescriptions, credentials, specialty, gender, state, isopiodprescriber)
+    states = models.Statedata.objects.all()
+    
+    
+    context = {
+        "states": states,
+        "drugList": drugList,
+        "complete": "True"
+    }
+    
+    return render(request, 'drug/machineLearning.html', context)
+
+def callRecommender(totalPrescriptions, credentials, specialty, gender, state, isopiodprescriber):
+    url = "http://680c85ca-cf52-4116-9171-cef2d9e9d1e6.eastus2.azurecontainer.io/score"
+    payload = json.dumps({
+    "Inputs": {
+        "WebServiceInput3": [
+        {
+            "npi": 1992883235,
+            "drugname": "LANTUS.SOLOSTAR",
+            "qty": 49
+        }
+        ],
+        "WebServiceInput1": [
+        {
+            "npi": 0,
+            "gender": gender,
+            "state": state,
+            "specialty": specialty,
+            "isopiodprescriber": isopiodprescriber,
+            "totalperscriptions": totalPrescriptions,
+            "credentials": credentials
+        }
+        ],
+        "WebServiceInput2": [
+        {
+            "drugname": "ABILIFY",
+            "isopiod": "FALSE"
+        }
+        ]
+    },
+    "GlobalParameters": {}
+    })
+    headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer uIHNxgJeKTlQGcvZbzxFxXUMQeqbXdP0'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+    response = response.json()["Results"]["WebServiceOutput0"][0]
+    drugList = []
+    drugList.append(response["Recommended Item 1"])
+    drugList.append(response["Recommended Item 2"])
+    drugList.append(response["Recommended Item 3"])
+    drugList.append(response["Recommended Item 4"])
+    drugList.append(response["Recommended Item 5"])
+
+    return drugList

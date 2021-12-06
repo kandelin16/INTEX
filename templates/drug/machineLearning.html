@@ -1,5 +1,6 @@
 {% extends 'base.html' %}{% load static%} {% block content%}
 <!-- Page Header-->
+<script src="{% static 'js/machineLearning.js' %}"></script>
 <header
   class="masthead"
   style="background-image: url('{% static 'assets/img/applelap.jpg' %}')"
@@ -20,68 +21,62 @@
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
-            <h2>Predictor: </h2>
-            <span class="subheading">The Total Number of Prescriptions a Prescriber will Prescribe</span>
+          <div>
+            <h2>Recommender: </h2>
+            <span class="subheading">Input Prescriber Information to Recommend 5 Drugs</span>
             <br>
-            <!--label and input for npi-->
-          <label for="npi"> </label>
-          <input type="npi" id="npi" name="npi" placeholder="NPI" class="form-control"/>
-         
-       
-            <!--label and input for first name-->
-          <label for="fname"> </label>
-          <input type="text" id="fname" name="fname" placeholder="First Name" class="form-control"/>
-       
+            <form action="../recommender/" method="post" id="formNo3" class="flex-form">{% csrf_token %}
+              <div class="flex-form-item">
+                <label for="totalPrescriptions">Total Prescriptions: </label>
+                <input type="text" id="totalPrescriptions" name="totalPrescriptions" placeholder="130" class="form-control"/>
+              </div>
+              <div class="flex-form-item">
+                <label for="credentials">Credentials: </label>
+                <input type="text" id="credentials" name="credentials" placeholder="M.D." class="form-control"/>
+              </div>
+              <div class="flex-form-item">
+                <label for="specialty">Specialty: </label>
+                <input type="text" id="specialty" name="specialty" placeholder="Specialty" class="form-control"/>
+              </div>
+              <div class="flex-form-item">
+                <!--drop down for gender-->
+                <label for="gender">Gender: </label>
+                <select name="gender" id="gender"class="form-control custom-flex-item"/>
+                  <option selected value=""> Select A Gender </option>
+                    <option value="M" >Male</option>
+                    <option value="F">Female</option>
+                </select>
+              </div>
+              <div class="flex-form-item">
+                <!--drop down for state-->
+                <label for="state">State: </label>
+                <select id="state" name="state" class="form-control custom-flex-item">
+                  <option selected value="">Select A State</option>
+                  {% for state in states%}
+                    <option value="{{state}}">{{state}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="flex-form-item">
+                <label for="opioid">Prescribes Opioids?: </label>
+                <select id="opioid" name="opioid" class="form-control">
+                  <option selected> -- Is DR an opioid presciber? -- </option>
+                    <option value="True">Yes</option>
+                    <option value="False">No</option>
+                </select>
+              </div>
+            </form>
      
-           <!--label and input for last name-->
-           <label for="lname"> </label>
-           <input type="text" id="lname" name="lname" placeholder="Last Name" class="form-control"/>
-          
-        
-          <!--label and input for credential-->
-          <label for="credentials"> </label>
-          <input type="text" id="credentials" name="credentials" placeholder="Credentials" class="form-control" />
-       
-       
-          <!--label and input for specialty-->
-          <label for="specialty"> </label>
-          <input type="text" id="specialty" name="specialty" placeholder="Specialty" class="form-control" />
-        
-   <br>
-          <!--drop down for gender-->
-          <select id="filterByGender" class="form-control custom-flex-item">
-            <option selected value="">-- Select A Gender --</option>
-            <option value="M">M</option>
-            <option value="F">F</option>
-          </select>
-        
-      <br>
-          <!--drop down for state-->
-          <select id="filterByState" class="form-control custom-flex-item">
-            <option selected value="">-- Select A State --</option>
-            {% for state in states%}
-              <option value="{{state}}">{{state}}</option>
-            {% endfor %}
-          </select>
-                <br/>
-         
-          <!--label and input for last name-->
-        
-          <select id="isopioidprescriber" class="form-control custom-flex-item">
-            <option selected value="">-- Is an Opioid Prescriber--</option>
-            <option value="TRUE">YES</option>
-            <option value="FALSE">NO</option>
-          </select>
-          <br />
-          <br/>
-     
-          <button class="btncolor" type="submit">Predict</button>
-
-         
-
-          </p>
-         
-          </p>
+            <button class="btn btn-primary btncolor" onclick="verifyForm();">Predict</button>
+          </div>
+          {% if complete == "True" %}
+            <div>
+              <h3>Recommended Items For The Prescriber You Input</h3>
+              {% for thingie in drugList%}
+                {{forloop.counter}}. {{thingie}} <br/>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>

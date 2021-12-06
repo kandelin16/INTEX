@@ -52,6 +52,8 @@ function filter() {
           compiledCreds += child.innerHTML
         }
       }
+
+      compiledCreds = compiledCreds.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
       
       if (nameObject.innerHTML.toLowerCase().includes(input) || specObject.innerHTML.toLowerCase().includes(input) || compiledCreds.toLowerCase().includes(input)) {
         tempDoc.hidden = false;
