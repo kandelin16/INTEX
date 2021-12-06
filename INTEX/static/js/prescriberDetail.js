@@ -43,8 +43,8 @@ function submitUpdate(id) {
     
     //Fix me porfa
     $.ajax({
-        url: "updatePrescriber/",
-        data: { "drugName": id , "number": element.innerHTML, "npiT": npi},
+        url: "../updatePrescriptionCount/",
+        data: { "drugName": id , "number": element.value, "npi": npi},
         type: 'POST'
     })
     
@@ -86,7 +86,7 @@ function updateHandler() {
     }
     else {
         if (confirm("Would you like to update this prescriber?")) {
-            document.getElementById("formnumbertwo").submit()
+            document.getElementById("formNo2").submit()
         }
     }
 }

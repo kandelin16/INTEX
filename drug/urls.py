@@ -20,7 +20,7 @@ urlpatterns= [
     path("", indexPageView, name="index"),
     path("delete/<str:prescriber>", deletePrescriberView, name="delete"),
     path("prescriberDetail/<str:prescriber>", prescriberDetailPageView, name="drDetail"),
-    path("updatePrescriber/<str:drugName>/<str:number>/<str:npiT>", updatePrescriberView, name="updatePrescriber"),
+    path("updatePrescriptionCount/", updatePrescriberView, name="updatePrescriber"),
     path("addPrescriber/", addPrescriberView, name="AddPrescriber"),
     path("updatePrescriber/", updatePrescriberDetailsView, name="updatePrescriber")
 ]

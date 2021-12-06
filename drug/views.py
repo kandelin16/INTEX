@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from . import models
 import re 
+from django.db import connection
 
 # Create your views here.
 
@@ -138,10 +139,12 @@ def averagePrec(att):
 
 
 
-def updatePrescriberView(request, drugName, number, npiT):
-    dr = models.Prescriber.objects.filter(npi=npiT)
-    #dr.drugName = number
-    dr.update()
+def updatePrescriberView(request):
+    npi = request.POST.get("npi", "")
+    drugName = request.POST.get("drugName", "")
+    number = request.POST.get("number", "")
+
+    models.Prescriber.objects.filter(npi=npi).update(**{drugName: number})
 
 def addPrescriberView(request):
     fname = request.POST.get("fname", "")
@@ -176,12 +179,37 @@ def addPrescriberView(request):
 def updatePrescriberDetailsView(request):
     npi = request.POST.get("npi", "")
     dr = models.Prescriber.objects.get(npi=npi)
-    #creates a dictionary of all of the attributes of the dr object
+
+    fname = request.POST.get("fname", "")
+    print(fname)
+    if (fname != dr.fname):
+        sqlUpdate(npi, "fname", fname)
+
+    lname = request.POST.get("lname", "")
+    if (lname != dr.lname):
+        sqlUpdate(npi, "lname", lname)
+
+    specialty = request.POST.get("specialty", "")
+    if (specialty != dr.specialty):
+        sqlUpdate(npi, "specialty", specialty)
+
+    gender = request.POST.get("gender", "")
+    if (gender != dr.gender):
+        sqlUpdate(npi, "gender", gender)
+
+    state = request.POST.get("state", "")
+    if (state != dr.state):
+        sqlUpdate(npi, "state", state)
+
+    isopiodprescriber = request.POST.get("opioid", "")
+    if (isopiodprescriber != dr.isopiodprescriber):
+        sqlUpdate(npi, "isopiodprescriber", isopiodprescriber)
+
+    dr = models.Prescriber.objects.get(npi=npi)
     attributes = vars(dr)
+
     tupList = []
-
     states = models.Statedata.objects.all()
-
     #loops through each dr attribute that is a drug. 
     for att in attributes:
         if ((type(attributes[att]) == int) and (att != 'totalperscriptions') and (attributes[att] != 0) and (att != 'npi')):
@@ -196,3 +224,18 @@ def updatePrescriberDetailsView(request):
         'states': states
     }
     return render(request, 'drug/prescriberDetail.html', context)
+
+def sqlUpdate(npi, attribute, newValue):
+    with connection.cursor() as cursor:
+        if attribute == "fname":
+            cursor.execute("UPDATE prescriber SET fname = %s WHERE npi = %s", [newValue, npi])
+        if attribute == "lname":
+            cursor.execute("UPDATE prescriber SET lname = %s WHERE npi = %s", [newValue, npi])
+        if attribute == "specialty":
+            cursor.execute("UPDATE prescriber SET specialty = %s WHERE npi = %s", [newValue, npi])
+        if attribute == "gender":
+            cursor.execute("UPDATE prescriber SET gender = %s WHERE npi = %s", [newValue, npi])
+        if attribute == "state":
+            cursor.execute("UPDATE prescriber SET state = %s WHERE npi = %s", [newValue, npi])
+        if attribute == "isopiodprescriber":
+            cursor.execute("UPDATE prescriber SET isopiodprescriber = %s WHERE npi = %s", [newValue, npi])
