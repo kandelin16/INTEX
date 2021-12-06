@@ -21,18 +21,21 @@
 <main class="mb-4">
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="col-md-10 col-lg-8 col-xl-7 screw-xl-7">
           <form action="../updatePrescriber/" method="post" id="formNo2" class="flex-form">{% csrf_token %}
-            <div class="flex-half-two">
-            <label for="fname">First Name: </label>
-              <input type="text" id="fname" name="fname" placeholder="First Name" value={{dr.fname}} class="form-control updateForm" disabled/> <br>
-
+            <div class="flex-form-item">
+              <label for="fname">First Name: </label>
+              <input type="text" id="fname" name="fname" placeholder="First Name" value={{dr.fname}} class="form-control updateForm" disabled/>
+            </div>
+            <div class="flex-form-item">
               <label for="lname">Last Name: </label>
-              <input type="text" id="lname" name="lname" placeholder="Last Name" value={{dr.lname}} class="form-control updateForm" disabled/><br>
-
+              <input type="text" id="lname" name="lname" placeholder="Last Name" value={{dr.lname}} class="form-control updateForm" disabled/>
+            </div>
+            <div class="flex-form-item">
               <label for="specialty">Specialty: </label>
               <input type="text" id="specialty" name="specialty" placeholder="Specialty" value={{dr.specialty}} class="form-control updateForm" disabled/>
-              <br>
+            </div>
+            <div class="flex-form-item">
               <!--drop down for gender-->
               <label for="gender">Gender: </label>
               {% with dr.gender as myGender %}
@@ -47,7 +50,8 @@
                 {% endif %}
               </select>
               {% endwith %}
-              <br>
+            </div>
+            <div class="flex-form-item">
               <!--drop down for state-->
               <label for="state">State: </label>
               {% with dr.state as myState %}
@@ -62,8 +66,9 @@
                 {% endfor %}
               </select>
               {% endwith %}
-              <br/>
-              <label for="opioid">Is an Opioid Prescriber: </label>
+            </div>
+            <div class="flex-form-item">
+              <label for="opioid">Prescribes Opioids?: </label>
               {% with dr.isopiodprescriber as myOpioid %}
               <select id="opioid" name="opioid" class="form-control updateForm" disabled>
                 <option selected> -- Is DR an opioid presciber? -- </option>
@@ -79,8 +84,10 @@
             </div>
             <input type="hidden" value="{{dr.npi}}" name="npi" id="npi"/>
           </form>
-          <input type="button" class="btn btn-secondary btn-margin" value="Update Prescriber" id="revealAndUpdateButton" onclick="updateHandler(this.id);"/>
-          <span hidden id="npi" value="{{dr.npi}}"></span>
+          <div style="display:flex; justify-content: center;">
+            <input type="button" class="btn btn-primary btn-margin" value="Update Prescriber" id="revealAndUpdateButton" onclick="updateHandler(this.id);"/>
+            <span hidden id="npi" value="{{dr.npi}}"></span>
+          </div>
         </div>
       </div>
 

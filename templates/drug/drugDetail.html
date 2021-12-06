@@ -38,13 +38,10 @@
           Top 10 Prescribers:
         </h3>
         {% for item in list %}
-        
-        
-        {{forloop.counter}}. {{item}} <br>
+        {% with item.npi as npi %}
+        {{forloop.counter}}. <a href="{% url 'drDetail' prescriber=npi %}">{{item}}</a> -<br>
+        {% endwith %}
         {% endfor %}
-
-        
-       
         </p>
       </div>
     </div>
