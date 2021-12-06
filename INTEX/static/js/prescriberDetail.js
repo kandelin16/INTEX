@@ -41,24 +41,30 @@ function submitUpdate(id) {
     element = document.getElementById(id + "P")
     npi = document.getElementById("npi").value
     
-    //Fix me porfa
-    $.ajax({
-        url: "../updatePrescriptionCount/",
-        data: { "drugName": id , "number": element.value, "npi": npi},
-        type: 'POST'
-    })
-    
-    
-    pTag = document.getElementById(id + "P")
+    if (confirm("Would you like to update the quantity prescribed?")) {
+        //Fix me porfa
+        $.ajax({
+            url: "../updatePrescriptionCount/",
+            data: { "drugName": id , "number": element.value, "npi": npi},
+            type: 'POST',
+            success: function(data) {
+                document.getElementById("totPrecCount").innerHTML = "Total Prescriptions: " + data.newAmount
+            },
+        })
+        
+        
+        pTag = document.getElementById(id + "P")
 
-    var capInput = document.createElement('span');
-    capInput.innerHTML =  pTag.value;
-    capInput.setAttribute('id', pTag.id);
+        var capInput = document.createElement('span');
+        capInput.innerHTML =  pTag.value;
+        capInput.setAttribute('id', pTag.id);
 
-    /*replaces the p tag with the input box*/
-    pTag.parentNode.replaceChild(capInput, pTag);
+        /*replaces the p tag with the input box*/
+        pTag.parentNode.replaceChild(capInput, pTag);
 
-    document.getElementById(id).value = "Update"
+        document.getElementById(id).value = "Update"
+    }
+
 }
 
 function buttonHandle(id) {

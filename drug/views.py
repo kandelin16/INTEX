@@ -1,4 +1,5 @@
 from typing import ContextManager
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.http import HttpResponse
 from . import models
@@ -141,10 +142,23 @@ def averagePrec(att):
 
 def updatePrescriberView(request):
     npi = request.POST.get("npi", "")
+    dr = models.Prescriber.objects.get(npi = npi)
+    attributes = vars(dr)
+
+
     drugName = request.POST.get("drugName", "")
     number = request.POST.get("number", "")
-
     models.Prescriber.objects.filter(npi=npi).update(**{drugName: number})
+
+    diff = int(number) - int(attributes[drugName])
+    newAmount = int(attributes["totalperscriptions"]) + diff
+    key = "totalperscriptions"
+    models.Prescriber.objects.filter(npi=npi).update(**{key: newAmount})
+
+    data = {
+        "newAmount": newAmount
+    }
+    return JsonResponse(data)
 
 def addPrescriberView(request):
     fname = request.POST.get("fname", "")
