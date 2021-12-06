@@ -18,6 +18,8 @@ def drugDetailPageView(request, drug):
     drug=drug.lower()
     list= models.Prescriber.objects.order_by(drug)[0:10]
 
+
+
     context = {
         'dru': dru,
         "list": list,
