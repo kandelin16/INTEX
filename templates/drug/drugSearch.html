@@ -9,8 +9,13 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="page-heading">
+<<<<<<< HEAD
           <h1>Drug Search</h1>
           <h2 class="subheading">Opioids and Non-Opioids</h2>
+=======
+          <h1>Search for a Drug</h1>
+          <h2 class="subheading">Different Types of Drugs</h2>
+>>>>>>> c67362f48f8a243c7f0e802b3a9a98d9291fee89
         </div>
       </div>
     </div>
@@ -31,7 +36,11 @@
             class="form-control custom-flex-item"
           />
 
-          <select id="filterIsOpioid" onchange="filterDrug();" class="form-control custom-flex-item">
+          <select
+            id="filterIsOpioid"
+            onchange="filterDrug();"
+            class="form-control custom-flex-item"
+          >
             <option selected value="">-- Is an Opioid --</option>
             <option value="TRUE">YES</option>
             <option value="FALSE">NO</option>
@@ -47,9 +56,11 @@
           <tr class="drugclass" id="{{ forloop.counter0 }}">
             {% with pill.drugname as mycustomdrugname %}
             <td id="{{forloop.counter0}}drugname">
-              <a href="{% url 'drugDetail' drug=mycustomdrugname %}">{{pill.drugname}}</a>
+              <a href="{% url 'drugDetail' drug=mycustomdrugname %}"
+                >{{pill.drugname}}</a
+              >
             </td>
-            
+
             <td id="{{forloop.counter0}}isopiod">{{pill.isopiod}}</td>
             {% endwith %}
           </tr>

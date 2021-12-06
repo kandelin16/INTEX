@@ -20,14 +20,14 @@
 <main class="mb-4">
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-          <div>
+        <div class="">
+          <div class="recommender-box-2">
             <h2>Recommender: </h2>
             <span class="subheading">Input Prescriber Information to Recommend 5 Drugs:</span>
             <br>
             <form action="../recommender/" method="post" id="formNo3" class="flex-form">{% csrf_token %}
               <div class="flex-form-item">
-                <label for="totalPrescriptions">Total Prescriptions: </label>
+                <label for="totalPrescriptions">Prescriptions: </label>
                 <input type="text" id="totalPrescriptions" name="totalPrescriptions" placeholder="130" class="form-control"/>
               </div>
               <div class="flex-form-item">
@@ -67,7 +67,7 @@
               </div>
             </form>
      
-            <button class="btn btn-primary btncolor" onclick="verifyForm();">Predict</button>
+            <center><button class="btn btn-primary btncolor2" onclick="verifyForm();">Predict</button></center>
           </div>
           {% if complete == "True" %}
             <div>

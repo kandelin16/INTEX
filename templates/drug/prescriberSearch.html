@@ -10,7 +10,6 @@
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="page-heading">
           <h1>Search for a Prescriber</h1>
-          <span class="subheading"></span>
         </div>
       </div>
     </div>
@@ -20,7 +19,7 @@
 <main class="mb-4">
   <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7">
+      <div class="col-md-10 col-lg-8">
         <h3 class="text-center">Input your search terms below</h3>
         <div class="search-flex">
           <input
@@ -54,17 +53,16 @@
           <input
             type="button"
             value="Add Prescriber"
-            class="btn btn-primary custom-btn"
+            class="btn btn-primary custom-btn searchbtn"
             id="thebuttontorevealthehiddensacredmostholyform"
             onclick="revealtheFORRMMMMMM();"
           />
         </div>
 
-        <div>
+        <div class="hidden-div" id="thehiddendiv" hidden>
           <form
             action="../addPrescriber/"
             method="post"
-            hidden
             id="thehiddensacredmostholyform"
             class="flex-form"
           >
@@ -121,13 +119,15 @@
               <option value="True">Yes</option>
               <option value="False">No</option>
             </select>
+          </form>
+          <center>
             <input
               type="button"
-              class="btn btn-secondary btn-margin"
-              value="submit"
+              class="btn btn-primary btn-margin btn-narrow searchbtn"
+              value="Submit"
               onclick="verifyForm();"
             />
-          </form>
+          </center>
         </div>
         <table class="table table-striped cust-table">
           <thead class="thead thead-light">

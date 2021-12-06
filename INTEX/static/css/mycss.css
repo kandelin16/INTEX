@@ -29,6 +29,12 @@ h1 {
   margin: 4px 2px;
   border-radius: 12px; */
 }
+
+.btncolor2 {
+  color: white;
+  border-color: #080a0c;
+  background-color: #4c7291;
+}
 btncolor:hover {
   background-color: #f7ae9e;
 }
@@ -108,6 +114,12 @@ btncolor:hover {
 .flex-form-item {
   margin-left: 15px;
   margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  margin-bottom: 2rem;
+  padding: 15px;
 }
 
 .screw-xl-7 {
@@ -128,4 +140,40 @@ btncolor:hover {
   margin-bottom: 3rem;
   margin-right: 20%;
   margin-left: 20%;
+}
+
+.recommender-box-2 {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  background-color: lightgray;
+  padding: 20px;
+  border-radius: 30px;
+  margin-bottom: 3rem;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.hidden-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-narrow {
+  width: 20%;
+}
+
+.blue {
+  background-color: #4c7291;
+}
+
+th {
+  background-color: #4c7291;
+  color: white;
+}
+
+.searchbtn {
+  background-color: #72accd;
+  color: white;
+  border: #72accd;
 }
