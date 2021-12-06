@@ -76,10 +76,12 @@ function filter() {
 function revealtheFORRMMMMMM() {
   if (document.getElementById("thehiddensacredmostholyform").hidden) {
     document.getElementById("thehiddensacredmostholyform").hidden = false;
+    document.getElementById("thehiddendiv").hidden = false
     document.getElementById("thebuttontorevealthehiddensacredmostholyform").value = "Cancel"
   }
   else {
     document.getElementById("thehiddensacredmostholyform").hidden = true;
+    document.getElementById("thehiddendiv").hidden = true
     document.getElementById("thebuttontorevealthehiddensacredmostholyform").value = "Add Prescriber"
   }
   
