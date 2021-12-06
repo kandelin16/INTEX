@@ -172,3 +172,27 @@ def addPrescriberView(request):
     }
 
     return render(request, 'drug/prescriberSearch.html', context)
+
+def updatePrescriberDetailsView(request):
+    npi = request.POST.get("npi", "")
+    dr = models.Prescriber.objects.get(npi=npi)
+    #creates a dictionary of all of the attributes of the dr object
+    attributes = vars(dr)
+    tupList = []
+
+    states = models.Statedata.objects.all()
+
+    #loops through each dr attribute that is a drug. 
+    for att in attributes:
+        if ((type(attributes[att]) == int) and (att != 'totalperscriptions') and (attributes[att] != 0) and (att != 'npi')):
+            avg = int(averagePrec(att))
+            name = att
+            amount = attributes[att]
+            tempTup = (name, amount, avg)
+            tupList.append(tempTup)
+    context = {
+        "dr": dr,
+        'drugList': tupList,
+        'states': states
+    }
+    return render(request, 'drug/prescriberDetail.html', context)
