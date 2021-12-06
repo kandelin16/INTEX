@@ -1,5 +1,5 @@
 {% extends 'base.html' %}{% load static%} {% block content%}
-
+{% load index %}
 <!-- Page Header-->
 <header
   class="masthead"
@@ -34,15 +34,14 @@
           </tr>
           
         </table>
-        <h3 class="post-title">
-          Top 10 Prescribers:
-        </h3>
-        {% for item in list %}
-        {% with item.npi as npi %}
-        {{forloop.counter}}. <a href="{% url 'drDetail' prescriber=npi %}">{{item}}</a> -<br>
-        {% endwith %}
-        {% endfor %}
-        </p>
+          <h3 class="post-title">
+            Top 10 Prescribers:
+          </h3>
+          {% for item in list %}
+          {% with item.npi as npi %}
+          {{forloop.counter}}. <a href="{% url 'drDetail' prescriber=npi %}"><b>{{item}}</b></a><br/> <span class="medium"><pre>    Amount Prescribed: {{ counts|index:forloop.counter0 }}</pre></span>
+          {% endwith %}
+          {% endfor %}
       </div>
     </div>
   </div>
