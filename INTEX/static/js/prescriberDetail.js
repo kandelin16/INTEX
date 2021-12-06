@@ -41,24 +41,30 @@ function submitUpdate(id) {
     element = document.getElementById(id + "P")
     npi = document.getElementById("npi").value
     
-    //Fix me porfa
-    $.ajax({
-        url: "updatePrescriber/",
-        data: { "drugName": id , "number": element.innerHTML, "npiT": npi},
-        type: 'POST'
-    })
-    
-    
-    pTag = document.getElementById(id + "P")
+    if (confirm("Would you like to update the quantity prescribed?")) {
+        //Fix me porfa
+        $.ajax({
+            url: "../updatePrescriptionCount/",
+            data: { "drugName": id , "number": element.value, "npi": npi},
+            type: 'POST',
+            success: function(data) {
+                document.getElementById("totPrecCount").innerHTML = "Total Prescriptions: " + data.newAmount
+            },
+        })
+        
+        
+        pTag = document.getElementById(id + "P")
 
-    var capInput = document.createElement('span');
-    capInput.innerHTML =  pTag.value;
-    capInput.setAttribute('id', pTag.id);
+        var capInput = document.createElement('span');
+        capInput.innerHTML =  pTag.value;
+        capInput.setAttribute('id', pTag.id);
 
-    /*replaces the p tag with the input box*/
-    pTag.parentNode.replaceChild(capInput, pTag);
+        /*replaces the p tag with the input box*/
+        pTag.parentNode.replaceChild(capInput, pTag);
 
-    document.getElementById(id).value = "Update"
+        document.getElementById(id).value = "Update"
+    }
+
 }
 
 function buttonHandle(id) {
@@ -69,5 +75,24 @@ function buttonHandle(id) {
     }
     else {
         submitUpdate(id)
+    }
+}
+
+function enableBoxes() {
+    inputs = document.getElementsByClassName("updateForm")
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].disabled = false
+        document.getElementById("revealAndUpdateButton").value = "Submit"
+    }
+}
+
+function updateHandler() {
+    if (document.getElementById("revealAndUpdateButton").value == "Update Prescriber") {
+        enableBoxes()
+    }
+    else {
+        if (confirm("Would you like to update this prescriber?")) {
+            document.getElementById("formNo2").submit()
+        }
     }
 }
