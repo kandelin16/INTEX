@@ -10,7 +10,6 @@
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="site-heading">
           <h1>Recommender and Predictor</h1>
-          
         </div>
       </div>
     </div>
@@ -67,14 +66,67 @@
               </div>
             </form>
      
-            <center><button class="btn btn-primary" onclick="verifyForm();">Predict</button></center>
+            <center><button class="btn btn-primary" onclick="verifyForm();">Run Recommender</button></center>
           </div>
-          {% if complete == "True" %}
+          <div class="recommender-box-2">
+            <h2>Predictor: </h2>
+            <span class="subheading">Input Prescriber Information to Predict Their Total Prescription Count</span>
+            <br>
+            <form action="../predictor/" method="post" id="formNo4" class="flex-form">{% csrf_token %}
+              <div class="flex-form-item">
+                <label for="totalPrescriptions">Prescriptions: </label>
+                <input type="text" id="totalPrescriptions" name="totalPrescriptions" placeholder="130" class="form-control"/>
+              </div>
+              <div class="flex-form-item">
+                <label for="credentials">Credentials: </label>
+                <input type="text" id="credentials" name="credentials" placeholder="M.D." class="form-control"/>
+              </div>
+              <div class="flex-form-item">
+                <label for="specialty">Specialty: </label>
+                <input type="text" id="specialty" name="specialty" placeholder="Specialty" class="form-control"/>
+              </div>
+              <div class="flex-form-item">
+                <!--drop down for gender-->
+                <label for="gender">Gender: </label>
+                <select name="gender" id="gender"class="form-control custom-flex-item"/>
+                  <option selected value=""> Select A Gender </option>
+                    <option value="M" >Male</option>
+                    <option value="F">Female</option>
+                </select>
+              </div>
+              <div class="flex-form-item">
+                <!--drop down for state-->
+                <label for="state">State: </label>
+                <select id="state" name="state" class="form-control custom-flex-item">
+                  <option selected value="">Select A State</option>
+                  {% for state in states%}
+                    <option value="{{state}}">{{state}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="flex-form-item">
+                <label for="opioid">Prescribes Opioids?: </label>
+                <select id="opioid" name="opioid" class="form-control">
+                  <option selected> -- Is DR an opioid presciber? -- </option>
+                    <option value="True">Yes</option>
+                    <option value="False">No</option>
+                </select>
+              </div>
+            </form>
+            <center><button class="btn btn-primary" onclick="verifyPredictor();">Run Predictor</button></center>
+          
+          {% if recommender == "True" %}
             <div>
               <h3>Recommended Items For The Prescriber You Input</h3>
               {% for thingie in drugList%}
                 {{forloop.counter}}. {{thingie}} <br/>
               {% endfor %}
+            </div>
+          {% endif %}
+          {% if predictor == "True" %}
+            <div>
+              <h3>Total Prescriptions Prediction</h3>
+              {{predTotal}}
             </div>
           {% endif %}
         </div>

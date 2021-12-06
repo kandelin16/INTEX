@@ -10,6 +10,7 @@ from .views import deletePrescriberView
 from .views import updatePrescriberView
 from .views import addPrescriberView
 from .views import updatePrescriberDetailsView
+from .views import PredictorView
 
 urlpatterns= [ 
     path("prescriberSearch/", prescriberSearchPageView, name="prescriberSearch"),
@@ -23,5 +24,6 @@ urlpatterns= [
     path("updatePrescriptionCount/", updatePrescriberView, name="updatePrescriber"),
     path("addPrescriber/", addPrescriberView, name="AddPrescriber"),
     path("updatePrescriber/", updatePrescriberDetailsView, name="updatePrescriber"),
-    path("recommender/", RecommenderView)
+    path("recommender/", RecommenderView),
+    path("predictor/", PredictorView, name="predictor")
 ]

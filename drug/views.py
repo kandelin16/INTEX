@@ -7,6 +7,7 @@ import re
 from django.db import connection
 import requests
 import json
+import numpy as np
 
 import drug
 
@@ -281,10 +282,30 @@ def RecommenderView(request):
     context = {
         "states": states,
         "drugList": drugList,
-        "complete": "True"
+        "recommender": "True"
     }
     
     return render(request, 'drug/machineLearning.html', context)
+
+def PredictorView(request):
+    states = models.Statedata.objects.all()
+
+    totalPrescriptions = request.POST.get("totalPrescriptions", "")
+    credentials = request.POST.get("credentials", "")
+    specialty = request.POST.get("specialty", "")
+    gender = request.POST.get("gender", "")
+    state = request.POST.get("state", "")
+    isopiodprescriber = request.POST.get("opioid", "")
+
+    predTotal = callPredictor(totalPrescriptions, gender, specialty, credentials, isopiodprescriber, state)
+
+    context = {
+        "states": states,
+        "predictor": "True",
+        "predTotal": predTotal
+    }
+
+    return render(request, 'drug/machineLearning.html', context) 
 
 def callRecommender(totalPrescriptions, credentials, specialty, gender, state, isopiodprescriber):
     url = "http://680c85ca-cf52-4116-9171-cef2d9e9d1e6.eastus2.azurecontainer.io/score"
@@ -332,3 +353,64 @@ def callRecommender(totalPrescriptions, credentials, specialty, gender, state, i
     drugList.append(response["Recommended Item 5"])
 
     return drugList
+
+def callPredictor(totalPrec, gender, specialty, creds, isopioid, state):
+
+    print(totalPrec)
+    totalPrec = np.log1p(int(totalPrec))
+    url = "http://3cc325ee-4037-41e0-8f31-ba3ea5b8213d.eastus2.azurecontainer.io/score"
+
+    payload = json.dumps({
+    "Inputs": {
+        "WebServiceInput0": [
+        {
+            "LnPlus1(totalperscriptions)": totalPrec,
+            "gender": gender,
+            "specialty": specialty,
+            "credentials": creds,
+            "fname": "",
+            "isopiodprescriber": isopioid,
+            "state": state,
+            "lname": "",
+            "npi": 0
+        }
+        ],
+        "WebServiceInput1": [
+        {
+            "id": 1,
+            "npi": 1003008475,
+            "credentials": "NP"
+        },
+        {
+            "id": 2,
+            "npi": 1003009630,
+            "credentials": "MD"
+        },
+        {
+            "id": 3,
+            "npi": 1003016270,
+            "credentials": "M.D."
+        },
+        {
+            "id": 4,
+            "npi": 1003042805,
+            "credentials": "MD"
+        },
+        {
+            "id": 5,
+            "npi": 1003043324,
+            "credentials": "M.D."
+        }
+        ]
+    },
+    "GlobalParameters": {}
+    })
+    headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer p2VaNopYq3kyTeT1RvMDEWEHBlAbkZof'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+    theGoods = str(round(float(response.json()["Results"]["WebServiceOutput0"][0]["ExpMinus1(Scored Labels)"]),3))
+    print(theGoods)
+    return theGoods
