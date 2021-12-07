@@ -35,7 +35,7 @@ h1 {
   border-color: #080a0c;
   background-color: #4c7291;
 }
-btncolor:hover {
+.btncolor:hover {
   background-color: #f7ae9e;
 }
 
@@ -178,8 +178,16 @@ th {
   border: #72accd;
 }
 
+.searchbtn:hover {
+  background-color: #f7ae9e;
+}
+
 .recbtn {
   background-color: #64356d;
   color: white;
   border: #d3d3d3;
+}
+
+.recbtn:hover {
+  background-color: #f7ae9e;
 }
