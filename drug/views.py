@@ -359,9 +359,9 @@ def callRecommender(totalPrescriptions, credentials, specialty, gender, state, i
 
     return drugList
 
-def callPredictor(totalPrec, gender, specialty, creds, isopioid, state):
+def callPredictor(gender, specialty, creds, isopioid, state):
 
-    print(totalPrec)
+    
     #totalPrec = np.log1p(int(totalPrec))
     url = "http://3cc325ee-4037-41e0-8f31-ba3ea5b8213d.eastus2.azurecontainer.io/score"
 
@@ -369,7 +369,7 @@ def callPredictor(totalPrec, gender, specialty, creds, isopioid, state):
     "Inputs": {
         "WebServiceInput0": [
         {
-            "LnPlus1(totalperscriptions)": totalPrec,
+            "LnPlus1(totalperscriptions)": 0,
             "gender": gender,
             "specialty": specialty,
             "credentials": creds,

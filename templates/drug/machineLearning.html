@@ -84,10 +84,7 @@
             <span class="subheading">Input Prescriber Information to Predict Their Total Prescription Count</span>
             <br>
             <form action="../predictor/" method="post" id="formNo4" class="flex-form">{% csrf_token %}
-              <div class="flex-form-item">
-                <label for="totalPrescriptions">Prescriptions: </label>
-                <input type="text" id="totalPrescriptions" name="totalPrescriptions" placeholder="130" class="form-control"/>
-              </div>
+              
               <div class="flex-form-item">
                 <label for="credentials">Credentials: </label>
                 <input type="text" id="credentials" name="credentials" placeholder="M.D." class="form-control"/>
