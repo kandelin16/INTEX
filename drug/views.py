@@ -244,10 +244,15 @@ def updatePrescriberDetailsView(request):
             amount = attributes[att]
             tempTup = (name, amount, avg)
             tupList.append(tempTup)
+            
+    recDrugs = callRecommender(dr.totalperscriptions, "", dr.specialty, dr.gender, dr.state, dr.isopiodprescriber)
+
+
     context = {
         "dr": dr,
         'drugList': tupList,
-        'states': states
+        'states': states,
+        'recDrugs': recDrugs
     }
     return render(request, 'drug/prescriberDetail.html', context)
 
