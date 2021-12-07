@@ -357,7 +357,7 @@ def callRecommender(totalPrescriptions, credentials, specialty, gender, state, i
 def callPredictor(totalPrec, gender, specialty, creds, isopioid, state):
 
     print(totalPrec)
-    totalPrec = np.log1p(int(totalPrec))
+    #totalPrec = np.log1p(int(totalPrec))
     url = "http://3cc325ee-4037-41e0-8f31-ba3ea5b8213d.eastus2.azurecontainer.io/score"
 
     payload = json.dumps({
