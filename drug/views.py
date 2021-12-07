@@ -359,7 +359,7 @@ def callRecommender(totalPrescriptions, credentials, specialty, gender, state, i
 
     return drugList
 
-def callPredictor(gender, specialty, creds, isopioid, state):
+def callPredictor(totalprec,gender, specialty, creds, isopioid, state):
 
     
     #totalPrec = np.log1p(int(totalPrec))
