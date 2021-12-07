@@ -85,8 +85,9 @@
             <input type="hidden" value="{{dr.npi}}" name="npi" id="npi"/>
           </form>
           <div style="display:flex; justify-content: center;">
-            <input type="button" class="btn btn-primary btn-margin searchbtn" value="Update Prescriber" id="revealAndUpdateButton" onclick="updateHandler(this.id);"/>
+            <input type="button" class="btn btn-primary btn-margin searchbtn btn-margin-2" value="Update Prescriber" id="revealAndUpdateButton" onclick="updateHandler(this.id);"/>
             <span hidden id="npi" value="{{dr.npi}}"></span>
+            <input type="button" class="btn btn-secondary btn-margin" id="cancelUpdateButton" value="Cancel" onclick="cancelUpdate();" hidden>
           </div>
         </div>
       </div>

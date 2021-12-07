@@ -191,3 +191,7 @@ th {
 .recbtn:hover {
   background-color: #f7ae9e;
 }
+
+.btn-margin-2 {
+  margin-right: 2rem;
+}

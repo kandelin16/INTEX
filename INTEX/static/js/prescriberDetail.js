@@ -83,16 +83,27 @@ function enableBoxes() {
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].disabled = false
         document.getElementById("revealAndUpdateButton").value = "Submit"
+        document.getElementById("revealAndUpdateButton").selected = false
     }
 }
 
 function updateHandler() {
     if (document.getElementById("revealAndUpdateButton").value == "Update Prescriber") {
         enableBoxes()
+        document.getElementById("cancelUpdateButton").hidden = false
     }
     else {
         if (confirm("Would you like to update this prescriber?")) {
             document.getElementById("formNo2").submit()
         }
+    }
+}
+
+function cancelUpdate() {
+    inputs = document.getElementsByClassName("updateForm")
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].disabled = true
+        document.getElementById("revealAndUpdateButton").value = "Update Prescriber"
+        document.getElementById("cancelUpdateButton").hidden = true
     }
 }
